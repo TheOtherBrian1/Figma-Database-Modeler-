@@ -1,0 +1,242 @@
+<div id = 'controller'>
+    <input type = 'search' id = 'search-tables' placeholder = 'Search Tables' />
+    <select>
+        <option>PostgreSQL</option>
+        <option>Access</option>
+        <option>MySQL</option>
+        <option>Redis</option>
+        <option>MongoDB</option>
+    </select>
+    
+
+    <ul>
+        <li>search tables</li>
+        <li>preferred database</li>
+        <li>test selected</li>
+        <li>download selected</li>
+        <li>download model</li>
+        <li>Add Row</li>
+        <li>warn before row deletion</li>
+    </ul>
+
+</div>
+<style>
+    #controller{
+        width: 100%;
+        height: 200px;
+        background: green;
+    }
+</style>
+
+<div class = "container">
+    <div class = "title-block">
+        <h2 class = 'title'>
+            Movie
+        </h2>
+    </div>
+    <div class = "field">
+        <div class = 'input-cont'>
+            <input placeholder="field-name" value = 'id' type = 'text' class = "field-name" />
+        </div>
+        <div class = 'input-cont'>
+            <input placeholder = "datatype" value = 'double precision' type = "text" class = "datatype" />
+        </div>
+        <div class = 'input-cont'>
+            <label class='null'>
+                <input class ='checkbox' type = "checkbox"/>
+                NULL
+            </label>
+        </div>
+        <div class = 'input-cont'>
+            <label class='null'>
+                <input class ='checkbox' type = "checkbox"/>
+                UNIQUE
+            </label>
+        </div>
+        <div class = 'input-cont'>
+            <select class = 'unique'>
+                <option value = "PK">INC</option>
+                <option value = "FK">UUID</option>
+                <option value = "">N/A</option>
+            </select>
+        </div>
+        <div class = 'input-cont last'>
+            <select class = 'keys'>
+                <option value = "PK">PK</option>
+                <option value = "FK">FK</option>
+                <option value = "">N/A</option>
+            </select>
+        </div>
+    </div>
+    
+</div>
+<script>
+
+    const checkboxes = document.getElementsByClassName('checkbox');
+
+    for(const checked of checkboxes)
+        checked.addEventListener('change', ({target})=>{
+            if(target.checked)
+                target.parentNode.style.color = 'white';
+            else
+                target.parentNode.style.color = 'rgba(255,255,255,.6)';
+            console.log(target, target.checked)
+        });
+    const fieldNames = document.getElementsByClassName('field-name');
+    const datatypes = document.getElementsByClassName('datatype');
+    console.log(datatypes[0].style.top, 'milk')
+        for(let i = 0; i < fieldNames.length; i++){
+            for(let el of [fieldNames, datatypes]){
+                const {top, left, right, bottom} = el[i].getBoundingClientRect();
+                const style = el[i].style;
+                const placeholderDiv = document.createElement('div');
+                const elipses = document.createElement('code');
+                elipses.innerText = '...';
+                placeholderDiv.className = 'replacement';
+                el[i].addEventListener('focus', e=>{
+                    el[i].insertAdjacentElement('afterend', placeholderDiv)
+                    style.position = 'absolute'; style.zIndex = 3; style.bottom = 0; style.top = -8; style.right = 0; style.left = 0; width = 'auto';
+                })
+                el[i].addEventListener('blur', e=>{
+                    placeholderDiv.remove();
+                    style.position = 'static'; style.top = top; style.bottom = bottom; style.left = left; style.right = right;
+                })
+            }
+        }
+
+</script>
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&family=Work+Sans:wght@600&display=swap');
+:root{
+    --container-background-color: #1E1F22;
+
+    --standard-font: 'IBM Plex Mono', monospace;
+    --standard-font-size: 14px;
+    --standard-font-color: white;
+    --standard-padding: 11px;
+
+    --title-font: 'Work Sans', sans-serif;
+    --title-font-size: 16px;
+    --title-background-color: rgba(255,255,255, .2);
+
+    --null-text-color: rgba(255,255,255,.6);
+    --numeric-text-color: #EFC900;
+    --character-text-color: #F17400;
+    --date-text-color: #00D0AB;
+}
+.container{
+    background-color: var(--container-background-color);
+    border-radius: 4px;
+}
+.title-block{
+    height: 40px;
+    width: clamp(360px, 360px, 100%);
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 0 var(--standard-padding);
+    background-color: var(--title-background-color);
+}
+.title{
+    padding: 0;
+    margin: 0;
+    color: var(--standard-font-color);
+    font-family: var(--title-font);
+    font-weight: 600;
+    font-size: var(--title-font-size);
+}
+.field{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--standard-padding);
+    position: relative;
+}
+input{
+    background-color: var(--container-background-color);
+    border: none;
+    padding-right: 4px;
+    border-right: rgba(19,133,255, .3) 2px solid;
+    color: var(--standard-font-color);
+    font-size: var(--standard-font-size);
+    font-family: var(--standard-font);
+    width: 80px;
+    height: 20px;
+    overflow: hidden;
+}
+input:focus{
+    background-color: var(--container-background-color);   
+    border: #1f7dbd 1px solid;
+    border-radius: 2px;
+    outline:none;
+    overflow: visible;
+    width: auto;
+}
+
+.replacement{
+    border: none;
+    width: 80px;
+    position: relative;
+    display: inline-block;
+}
+input[type="checkbox"]{
+    visibility: hidden;
+    position: absolute;
+    top: -10px;
+}
+
+.null{
+    font-family: var(--standard-font);
+    color: var(--null-text-color);
+}
+
+.input-cont.last{
+    width: 10%;
+}
+select{
+    font-size: 12px;
+    border: none;
+    text-align-last:center;
+    -webkit-appearance: none;
+    outline: none;
+    font-weight: 600;
+    font-family: var(--standard-font);
+}
+.unique{
+    color: #e8ecee;
+    background-color: rgba(190, 255, 38, 0.2);
+    border-radius: 3px;
+    width: 50px;
+    height: 25px;
+}
+.keys{
+    color: #e8ecee;
+    background-color: rgba(19,133,255, .2);
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+}
+option{
+    color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.numeric{
+    color: var(--numeric-text-color);
+}
+.character{
+    color: var(--character-text-color);
+}
+.date{
+    color: var(--date-text-color)
+}
+.input-cont{
+    position: relative;
+}
+.input-cont:not(.last){
+    border-bottom: inset 10px solid grey;
+}
+</style>
