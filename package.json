@@ -1,14 +1,65 @@
 {
-  "name": "Zebra",
-  "version": "1.0.0",
+  "name": "zebra",
+  "version": "0.1.0",
   "description": "Your Figma plugin",
   "main": "code.js",
   "scripts": {
-    "build": "tsc -p tsconfig.json"
+    "start": "npx webpack --mode=development --watch",
+    "build": "npx webpack --mode=production"
   },
-  "author": "",
-  "license": "",
+  "author": "Brian Brennglass",
+  "license": "MIT",
   "devDependencies": {
-    "@figma/plugin-typings": "^1.39.0"
-  }
+    "@figma/plugin-typings": "^1.39.0",
+    "@types/react": "^17.0.37",
+    "@types/react-dom": "^17.0.11",
+    "css-loader": "^6.5.1",
+    "html-inline-script-webpack-plugin": "^2.0.3",
+    "html-webpack-inline-source-plugin": "^1.0.0-beta.2",
+    "html-webpack-plugin": "^4.5.2",
+    "style-loader": "^3.3.1",
+    "ts-loader": "^9.2.6",
+    "typescript": "^4.5.2",
+    "url-loader": "^4.1.1",
+    "webpack": "^5.64.4",
+    "webpack-cli": "^4.9.1"
+  },
+  "dependencies": {
+    "has": "^1.0.3",
+    "has-flag": "^4.0.0",
+    "he": "^1.2.0",
+    "htmlparser2": "^6.1.0",
+    "human-signals": "^2.1.0",
+    "icss-utils": "^5.1.0",
+    "is-core-module": "^2.8.0",
+    "is-number": "^7.0.0",
+    "is-plain-object": "^2.0.4",
+    "is-stream": "^2.0.1",
+    "isexe": "^2.0.0",
+    "isobject": "^3.0.1",
+    "jest-worker": "^27.3.1",
+    "json-schema-traverse": "^0.4.1",
+    "json5": "^2.2.0",
+    "kind-of": "^6.0.3",
+    "lodash": "^4.17.21",
+    "merge-stream": "^2.0.0",
+    "mime-db": "^1.51.0",
+    "mimic-fn": "^2.1.0",
+    "minimist": "^1.2.5",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TheOtherBrian1/Figma-Database-Modeler-.git"
+  },
+  "keywords": [
+    "Figma",
+    "database",
+    "modeler"
+  ],
+  "bugs": {
+    "url": "https://github.com/TheOtherBrian1/Figma-Database-Modeler-/issues"
+  },
+  "homepage": "https://github.com/TheOtherBrian1/Figma-Database-Modeler-#readme"
 }

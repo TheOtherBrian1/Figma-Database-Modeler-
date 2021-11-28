@@ -2,9 +2,9 @@
   "name": "Zebra",
   "id": "1042971269588261083",
   "api": "1.0.0",
-  "main": "code.js",
   "editorType": [
     "figma"
   ],
-  "ui": "ui.html"
+  "main": "dist/code.js",
+  "ui": "dist/ui.html"
 }
