@@ -3,6 +3,8 @@
     "target": "es6",
     "jsx": "react",
     "lib": ["es6", "DOM"],
+    "moduleResolution": "node",
     "typeRoots": ["./node_modules/@types", "./node_modules/@figma"]
-  }
+  },
+  "include": ["src/**/*"]
 }

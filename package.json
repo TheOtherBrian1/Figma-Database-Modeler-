@@ -25,6 +25,9 @@
     "webpack-cli": "^4.9.1"
   },
   "dependencies": {
+    "@emotion/react": "^11.7.0",
+    "@emotion/styled": "^11.6.0",
+    "@mui/material": "^5.2.1",
     "has": "^1.0.3",
     "has-flag": "^4.0.0",
     "he": "^1.2.0",

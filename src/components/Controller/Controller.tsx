@@ -1,10 +1,12 @@
 import * as React from 'react';
 import './Controller.css';
+import SelectDatabase from './SelectDatabase';
 
 const Controller = ()=>{
 
     return(
     <div id = 'controller'>
+        <SelectDatabase />
         <input type = 'search' id = 'search-tables' placeholder = 'Search Tables' />
         <select>
             <option>PostgreSQL</option>
