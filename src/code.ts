@@ -12,7 +12,6 @@
         figma.currentPage.appendChild(rect);
         nodes.push(rect);
       }
-      console.log('milk')
       figma.currentPage.selection = nodes;
       figma.viewport.scrollAndZoomIntoView(nodes);
     }

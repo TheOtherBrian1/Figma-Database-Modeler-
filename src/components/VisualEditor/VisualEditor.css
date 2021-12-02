@@ -44,19 +44,19 @@ justify-content: space-between;
 padding: var(--standard-padding);
 position: relative;
 }
-input{
-background-color: var(--container-background-color);
-border: none;
-padding-right: 4px;
-border-right: rgba(19,133,255, .3) 2px solid;
-color: var(--standard-font-color);
-font-size: var(--standard-font-size);
-font-family: var(--standard-font);
-width: 80px;
-height: 20px;
-overflow: hidden;
+.input{
+    background-color: var(--container-background-color);
+    border: none;
+    padding-right: 4px;
+    border-right: rgba(19,133,255, .3) 2px solid;
+    color: var(--standard-font-color);
+    font-size: var(--standard-font-size);
+    font-family: var(--standard-font);
+    width: 80px;
+    height: 20px;
+    overflow: hidden;
 }
-input:focus{
+.input:focus{
 background-color: var(--container-background-color);   
 border: #1f7dbd 1px solid;
 border-radius: 2px;
@@ -71,7 +71,7 @@ width: 80px;
 position: relative;
 display: inline-block;
 }
-input[type="checkbox"]{
+.input[type="checkbox"]{
 visibility: hidden;
 position: absolute;
 top: -10px;

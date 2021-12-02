@@ -1,10 +1,11 @@
 import * as React from 'react';
+import {useState} from 'react';
 import './VisualEditor.css';
 
 const VisualEditor = ()=>{
-
+    const [input, setInput] = useState(['', '']);
     return(
-    <div className = "container">
+    <div className = "container">s
         <div className = "title-block">
             <h2 className = 'title'>
                 Movie
@@ -12,20 +13,26 @@ const VisualEditor = ()=>{
         </div>
         <div className = "field">
             <div className = 'input-cont'>
-                <input placeholder="field-name" value = 'id' type = 'text' className = "field-name" />
+                <input 
+                    placeholder="field-name" 
+                    value = 'id' 
+                    type = 'text' 
+                    className = " input field-name" 
+                />
+                
             </div>
             <div className = 'input-cont'>
-                <input placeholder = "datatype" value = 'double precision' type = "text" className = "datatype" />
+                <input placeholder = "datatype" value = 'double precision' type = "text" className = "input datatype" />
             </div>
             <div className = 'input-cont'>
                 <label className='null'>
-                    <input className ='checkbox' type = "checkbox"/>
+                    <input className ='input checkbox' type = "checkbox"/>
                     NULL
                 </label>
             </div>
             <div className = 'input-cont'>
                 <label className='null'>
-                    <input className ='checkbox' type = "checkbox"/>
+                    <input className ='input checkbox' type = "checkbox"/>
                     UNIQUE
                 </label>
             </div>

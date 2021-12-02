@@ -1,5 +1,6 @@
 //const HtmlWebpackInlineSourcePlugin = require('html-webpack-inline-source-plugin');
-const HtmlInlineScriptPlugin = require('html-inline-script-webpack-plugin');
+//const HtmlInlineScriptPlugin = require('html-inline-script-webpack-plugin');
+const InlineChunkHtmlPlugin = require('react-dev-utils/InlineChunkHtmlPlugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const path = require('path')
 
@@ -41,8 +42,9 @@ module.exports = (env, argv) => ({
       inject: "body",
       template: './src/ui.html',
       filename: 'ui.html',
+      //inlineSource: '*.(js)$',
       chunks: ['ui'],
     }),
-    new HtmlInlineScriptPlugin()
+    new InlineChunkHtmlPlugin(HtmlWebpackPlugin, [/ui/])
   ],
 })
