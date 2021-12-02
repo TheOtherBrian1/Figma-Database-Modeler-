@@ -33,6 +33,7 @@
     "@mui/icons-material": "^5.2.0",
     "@mui/lab": "^5.0.0-alpha.58",
     "@mui/material": "^5.2.1",
+    "@mui/styles": "^5.2.2",
     "has": "^1.0.3",
     "has-flag": "^4.0.0",
     "he": "^1.2.0",

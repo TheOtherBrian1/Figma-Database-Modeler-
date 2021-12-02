@@ -11,7 +11,7 @@ const Controller = ()=>{
         <SelectDatabase />
         <SelectTable />
         <DownloadCodeButtons />
-        <input type = 'search' id = 'search-tables' placeholder = 'Search Tables' />
+        {/*<input type = 'search' id = 'search-tables' placeholder = 'Search Tables' />
         <select>
             <option>PostgreSQL</option>
             <option>Access</option>
@@ -28,6 +28,7 @@ const Controller = ()=>{
             <li>Add Row</li>
             <li>warn before row deletion</li>
         </ul>
+    */}
     </div>
     )
 }
