@@ -1,8 +1,8 @@
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
-import VisualEditor from './components/VisualEditor/VisualEditor'
+import VisualEditor from './components/VisualTableRepresentation/VisualEditor/VisualEditor'
 import Controller from './components/Controller/Controller'
-import ModTable from './components/ModTable/ModTable'
+import ModTable from './components/Controller/ModTable/ModTable'
 import {Provider} from 'react-redux';
 import {createStore} from 'redux';
 import combineReducers from'./redux/combinedReducers';
