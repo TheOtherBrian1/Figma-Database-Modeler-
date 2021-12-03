@@ -11,8 +11,20 @@ const tableTemplate = (newTitle:string)=>({
             }
         ]
 })
+export interface Col{
+    id: string,
+    dataType: string,
+    constraints: string[],
+    keys: string[]
+}
+export interface Table{
+    title: string,
+    col: Col[]
+}
 
-const defaultTables= [{
+type TableList = Table[];
+
+const defaultTables: TableList= [{
     title: 'untitled',
     col:[
             {
@@ -89,7 +101,7 @@ export const actions = {
 }
 
 
-const tableReducer = (state = defaultTables, action) => 
+const tableReducer = (state:TableList = defaultTables, action) => 
     produce(state, draft=>{
         const {title=null,table_index=null, col_index=null, id=null, dataType=null, newConstraints=null, newKeys=null} = action.payload;
         switch(action.type){

@@ -4,11 +4,9 @@ import VisualEditor from './components/VisualTableRepresentation/VisualEditor/Vi
 import Controller from './components/Controller/Controller'
 import ModTable from './components/Controller/ModTable/ModTable'
 import {Provider} from 'react-redux';
-import {createStore} from 'redux';
-import combineReducers from'./redux/combinedReducers';
+import store from './redux/store';
 
 
-const store = createStore(combineReducers);
 function App (){
     return (
       <Provider store = {store}>
