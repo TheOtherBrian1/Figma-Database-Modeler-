@@ -3,12 +3,11 @@ import * as ReactDOM from 'react-dom'
 import VisualEditor from './components/VisualEditor/VisualEditor'
 import Controller from './components/Controller/Controller'
 import ModTable from './components/ModTable/ModTable'
+import Test from './Test';
 function App (){
     return (
       <div>
-        <Controller />
-        <ModTable />
-        <VisualEditor />
+        <Test />
       </div>
     )
 }

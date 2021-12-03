@@ -14,17 +14,17 @@ const VisualEditor = ()=>{
         </div>
         <div className = "field">
             <div className = 'input-cont'>
-                <input 
+                {/*<input 
                     placeholder="field-name" 
                     value = 'id' 
                     type = 'text' 
                     className = " input field-name" 
-                />
-                
+                />*/}
+                <InputBox data = {['duck']} />
             </div>
             <div className = 'input-cont'>
                 {/*<input placeholder = "datatype" value = 'double precision' type = "text" className = "datatype" />*/}
-                <InputBox />
+                <InputBox data = {['duck']} />
             </div>
             <div className = 'input-cont'>
                 <label className='null'>
