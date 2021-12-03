@@ -11,27 +11,28 @@ const tableTemplate = (newTitle:string)=>({
             }
         ]
 })
+
 export interface Col{
     id: string,
     dataType: string,
-    constraints: string[],
-    keys: string[]
+    constraints: {[key:string]:[string, boolean]},
+    keys: [string, boolean][]
 }
 export interface Table{
     title: string,
-    col: Col[]
+    cols: Col[]
 }
 
 type TableList = Table[];
 
 const defaultTables: TableList= [{
     title: 'untitled',
-    col:[
+    cols:[
             {
                 id: 'col_title',
                 dataType: 'INTEGER',
-                constraints: ['UUID'],
-                keys: ['PK']
+                constraints: {UUID:['UUID',false]},
+                keys: [['PK', false]]
             }
         ]
 }];
@@ -67,27 +68,27 @@ const modifyTitle = (table_index:number, title:string)=>({
 })
 
 //payload = {table_index, col_index, id}
-const modifyId = (table_index:number, col_index:number, id:number)=>({
+export const modifyId = (table_index:number, col_index:number, id:string)=>({
     type: orchestrateModel.MODIFY_ID,
     payload:{table_index, col_index, id}
 })
 
 //payload = {table_index, col_index, dataType}
-const modifyDatatype = (table_index, col_index, dataType)=>({
+export const modifyDatatype = (table_index:number, col_index:number, dataType:string)=>({
     type: orchestrateModel.MODIFY_DATATYPE,
     payload:{table_index, col_index, dataType}
 })
 
 //payload = {table_index, col_index, newConstraints}
-const modifyConstraints = (table_index, col_index, newConstraints)=>({
+export const modifyConstraints = (table_index:number, col_index:number, constraint:string)=>({
     type: orchestrateModel.MODIFY_CONSTRAINTS,
-    payload:{table_index, col_index, newConstraints}
+    payload:{table_index, col_index, constraint}
 })
 
-//payload = {table_index, col_index, newKeys}
-const modifyKeys = (table_index, col_index, newKeys)=>({
+//payload = {table_index, col_index, keyIndex}
+export const modifyKeys = (table_index:number, col_index:number, keyIndex:number)=>({
     type: orchestrateModel.MODIFY_KEYS,
-    payload:{table_index, col_index, newKeys}
+    payload:{table_index, col_index, keyIndex}
 })
 
 export const actions = {
@@ -103,7 +104,7 @@ export const actions = {
 
 const tableReducer = (state:TableList = defaultTables, action) => 
     produce(state, draft=>{
-        const {title=null,table_index=null, col_index=null, id=null, dataType=null, newConstraints=null, newKeys=null} = action.payload;
+        const {title=null,table_index=null, col_index=null, id=null, dataType=null, constraint=null, keyIndex=null} = action.payload;
         switch(action.type){
             case orchestrateModel.CREATE_TABLE:
                 draft.push(tableTemplate(title));
@@ -115,16 +116,18 @@ const tableReducer = (state:TableList = defaultTables, action) =>
                 draft[table_index].title = title;
                 break;
             case orchestrateModel.MODIFY_ID:
-                draft[table_index].col[col_index].id = id;
+                draft[table_index].cols[col_index].id = id;
                 break;
             case orchestrateModel.MODIFY_DATATYPE:
-                draft[table_index].col[col_index].dataType = dataType;
+                draft[table_index].cols[col_index].dataType = dataType;
                 break;
             case orchestrateModel.MODIFY_CONSTRAINTS:
-                draft[table_index].col[col_index].constraints = newConstraints;
+                const prevConstraint = state[table_index].cols[col_index].constraints[constraint][1];
+                draft[table_index].cols[col_index].constraints[constraint][1] = !prevConstraint;
                 break;
             case orchestrateModel.MODIFY_KEYS:
-                draft[table_index].col[col_index].keys = newKeys;
+                const toggle = state[table_index].cols[col_index].keys[keyIndex][1]
+                draft[table_index].cols[col_index].keys[keyIndex][1] = toggle;
                 break;
             default:
                 break;

@@ -8,25 +8,25 @@ const orchestrateController = {
 };
 
 //payload = {database:string}
-const selectDatabase = (database:string)=>({
+export const selectDatabase = (database:string)=>({
     type: orchestrateController.SELECTED_DATABASE,
     payload:{database}
 });
 
 //payload = {test:boolean}
-const testSelectedTables = (test:boolean)=>({
+export const testSelectedTables = (test:boolean)=>({
     type: orchestrateController.TEST_SELECTED_TABLES,
     payload:{test}
 });
 
 //payload = {test:boolean}
-const testDatabase = (test:boolean)=>({
+export const testDatabase = (test:boolean)=>({
     type: orchestrateController.TEST_DATABASE,
     payload:{test}
 });
 
 //payload = {test:boolean}
-const generateSQL = (test:boolean)=>({
+export const generateSQL = (test:boolean)=>({
     type: orchestrateController.TEST_DATABASE,
     payload:{test}
 });
