@@ -2,6 +2,7 @@ import * as React from 'react';
 import {useState} from 'react';
 import './VisualEditor.css';
 import InputBox from './InputBox';
+import Constraints from '../Constraints/Constraints';
 
 const VisualEditor = ()=>{
     const [input, setInput] = useState(['', '']);
@@ -14,12 +15,6 @@ const VisualEditor = ()=>{
         </div>
         <div className = "field">
             <div className = 'input-cont'>
-                {/*<input 
-                    placeholder="field-name" 
-                    value = 'id' 
-                    type = 'text' 
-                    className = " input field-name" 
-                />*/}
                 <InputBox data = {['duck']} />
             </div>
             <div className = 'input-cont'>
@@ -27,23 +22,7 @@ const VisualEditor = ()=>{
                 <InputBox data = {['duck']} />
             </div>
             <div className = 'input-cont'>
-                <label className='null'>
-                    <input className ='input checkbox' type = "checkbox"/>
-                    NULL
-                </label>
-            </div>
-            <div className = 'input-cont'>
-                <label className='null'>
-                    <input className ='input checkbox' type = "checkbox"/>
-                    UNIQUE
-                </label>
-            </div>
-            <div className = 'input-cont'>
-                <select className = 'unique'>
-                    <option value = "PK">INC</option>
-                    <option value = "FK">UUID</option>
-                    <option value = "">N/A</option>
-                </select>
+                <Constraints />
             </div>
             <div className = 'input-cont last'>
                 <select className = 'keys'>

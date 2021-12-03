@@ -20,7 +20,9 @@ const Autocomplete = styled(MuiAutocomplete)({
         width: 'auto'
     },
     "& .MuiChip-root":{
-        backgroundColor: 'yellow'
+        backgroundColor: 'gray',
+        opacity: .7,
+        color: 'white'
     }
   });
 interface Attribute{
@@ -28,7 +30,7 @@ interface Attribute{
 };
 type DBSelect = Attribute[];
 
-export default function Test() {
+export default function Constraints() {
   return (
     <Autocomplete
       multiple
@@ -49,7 +51,7 @@ export default function Test() {
         </li>
       )}
       renderInput={(params) => (
-        <TextField {...params} label="SQL Specifires" />
+        <TextField {...params} label="SQL Constraints" />
       )}
     />
   );

@@ -3,11 +3,14 @@ import * as ReactDOM from 'react-dom'
 import VisualEditor from './components/VisualEditor/VisualEditor'
 import Controller from './components/Controller/Controller'
 import ModTable from './components/ModTable/ModTable'
-import Test from './Test';
+import KeyButtons from './components/KeyButtons/KeyButtons'
 function App (){
     return (
       <div>
-        <Test />
+        <KeyButtons />
+        {/*<Controller />
+        <ModTable />
+        <VisualEditor />*/}
       </div>
     )
 }
