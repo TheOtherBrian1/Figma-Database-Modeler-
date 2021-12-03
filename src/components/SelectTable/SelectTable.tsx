@@ -27,7 +27,7 @@ export default function SelectTable() {
           {option.title}
         </li>
       )}
-      style={{ width: 200 }}
+      style={{ width: 80 }}
       renderInput={(params) => (
         <TextField {...params} label="Select Table" placeholder="Favorites" />
       )}

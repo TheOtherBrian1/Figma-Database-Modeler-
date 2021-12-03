@@ -2,7 +2,6 @@
 
   figma.ui.resize(400, 600);
   figma.ui.onmessage = msg => {
-
     if (msg.type === 'create-shapes') {
       const nodes = [];
       for (let i = 0; i < msg.count; i++) {
@@ -18,3 +17,8 @@
 
     figma.closePlugin();
   };
+
+
+  function testAllCode(){
+    
+  }

@@ -8,7 +8,7 @@ import { ReactJSXElement } from "@emotion/react/types/jsx-namespace";
 
 const Autocomplete = styled(MuiAutocomplete)({
   ".MuiAutocomplete-inputRoot": {
-    width: 160,
+    width: 80,
     color: "white",
     fontFamily: "'IBM Plex Mono', monospace",
   },

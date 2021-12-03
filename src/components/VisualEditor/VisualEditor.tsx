@@ -3,6 +3,7 @@ import {useState} from 'react';
 import './VisualEditor.css';
 import InputBox from './InputBox';
 import Constraints from '../Constraints/Constraints';
+import KeyButtons from '../KeyButtons/KeyButtons';
 
 const VisualEditor = ()=>{
     const [input, setInput] = useState(['', '']);
@@ -18,18 +19,13 @@ const VisualEditor = ()=>{
                 <InputBox data = {['duck']} />
             </div>
             <div className = 'input-cont'>
-                {/*<input placeholder = "datatype" value = 'double precision' type = "text" className = "datatype" />*/}
                 <InputBox data = {['duck']} />
             </div>
             <div className = 'input-cont'>
                 <Constraints />
             </div>
             <div className = 'input-cont last'>
-                <select className = 'keys'>
-                    <option value = "PK">PK</option>
-                    <option value = "FK">FK</option>
-                    <option value = "">N/A</option>
-                </select>
+                <KeyButtons />
             </div>
         </div>    
     </div>
