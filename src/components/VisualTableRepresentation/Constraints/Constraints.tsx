@@ -40,7 +40,6 @@ interface Props{
 export default function Constraints({tableIndex, colIndex}:Props) {
   const dispatch = useAppDispatch();
   const constraints = useAppSelector(state=>state.tableReducer[tableIndex].cols[colIndex].constraints)
-  console.log(store.getState());
   return (
     <Autocomplete
       multiple

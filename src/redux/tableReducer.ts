@@ -127,7 +127,7 @@ const tableReducer = (state:TableList = defaultTables, action) => {
                     break;
                 case orchestrateModel.MODIFY_KEYS:
                     const toggle = state[load.table_index].cols[load.col_index].keys[load.keyIndex][1]
-                    draft[load.table_index].cols[load.col_index].keys[load.keyIndex][1] = toggle;
+                    draft[load.table_index].cols[load.col_index].keys[load.keyIndex][1] = !toggle;
                     break;
                 default:
                     break;

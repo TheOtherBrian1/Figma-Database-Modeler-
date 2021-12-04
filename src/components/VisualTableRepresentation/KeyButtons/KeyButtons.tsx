@@ -2,6 +2,7 @@ import * as React from 'react';
 import ToggleButton from '@mui/material/ToggleButton';
 import {useAppDispatch, useAppSelector} from '../../../hooks/reduxHooks';
 import {modifyKeys} from '../../../redux/tableReducer';
+import store from '../../../redux/store';
 
 interface Props{
   tableIndex: number,
@@ -19,7 +20,9 @@ export default function KeyButtons({tableIndex, colIndex}:Props) {
               key = {name+tableIndex+colIndex+keyIndex}
               value={name}
               selected={active}
-              onChange={()=>dispatch(modifyKeys(tableIndex, colIndex, keyIndex))}
+              onChange={(e)=>{
+                dispatch(modifyKeys(tableIndex, colIndex, keyIndex));
+              }}
             >
               {name}
             </ToggleButton>
