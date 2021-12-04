@@ -9,6 +9,7 @@
       "./node_modules/@figma",
       "./src/assets/types"
     ],
+    "sourceMap": true,
     "checkJs": true
   },
   "include": ["src/**/*"],

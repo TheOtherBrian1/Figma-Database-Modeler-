@@ -39,34 +39,37 @@ export const actions = {
 }
 
 const defaultController = {
-    selectedDatabase: 'postgreSQL',
+    selectedDatabase: 'mysql',
     testSelectedTables: false,
     testDatabase: false,
     generateSQL: false
 };
 
-const controllerReducer = (state = defaultController, action) => (
-    produce(state, draft=>{
-        const {database = null, test = null} = action.payload;
-        switch(action.type){
-            case orchestrateController.SELECTED_DATABASE:
-                draft.selectedDatabase = database;
-                break;
-            case orchestrateController.TEST_SELECTED_TABLES:
-                draft.testSelectedTables = test;
-                break;
-            case orchestrateController.TEST_DATABASE:
-                draft.testDatabase = test;
-                break;
-            case orchestrateController.GENERATE_SQL:
-                draft.generateSQL = test;
-                break;
-            default:
-                break;
+const controllerReducer = (state = defaultController, action) => {
+    const load = action.payload;
+    return(
+        produce(state, draft=>{
+            switch(action.type){
+                case orchestrateController.SELECTED_DATABASE:
+                    draft.selectedDatabase = load.database;
+                    break;
+                case orchestrateController.TEST_SELECTED_TABLES:
+                    draft.testSelectedTables = load.test;
+                    break;
+                case orchestrateController.TEST_DATABASE:
+                    draft.testDatabase = load.test;
+                    break;
+                case orchestrateController.GENERATE_SQL:
+                    draft.generateSQL = load.test;
+                    break;
+                default:
+                    return state;
+                    break;
+                }
             }
-        }
+        )
     )
-);
+};
 
 
 export default controllerReducer;

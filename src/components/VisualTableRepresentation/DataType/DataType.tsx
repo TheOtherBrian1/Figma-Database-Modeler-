@@ -12,8 +12,12 @@ interface Props{
 
 export default function DataType({tableIndex, colIndex}:Props) {
     const dispatch = useAppDispatch();
-    const selectedDatabase = useAppSelector(state=>state.controllerReducer.selectedDatabase);
-
+    const selectedDatabase:string = useAppSelector(state=>{
+      if(state.controllerReducer)
+        return state.controllerReducer.selectedDatabase;
+      else
+        return 'postgresql';
+    });
   return (
     <Autocomplete
       options={databases[selectedDatabase]}

@@ -7,6 +7,7 @@ import CheckBoxIcon from '@mui/icons-material/CheckBox';
 import { styled } from "@mui/material/styles";
 import {useAppDispatch, useAppSelector} from '../../../hooks/reduxHooks';
 import {modifyConstraints} from '../../../redux/tableReducer';
+import store from '../../../redux/store';
 
 const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
 const checkedIcon = <CheckBoxIcon fontSize="small" />;
@@ -39,7 +40,7 @@ interface Props{
 export default function Constraints({tableIndex, colIndex}:Props) {
   const dispatch = useAppDispatch();
   const constraints = useAppSelector(state=>state.tableReducer[tableIndex].cols[colIndex].constraints)
-
+  console.log(store.getState());
   return (
     <Autocomplete
       multiple
@@ -47,6 +48,7 @@ export default function Constraints({tableIndex, colIndex}:Props) {
       limitTags={1}
       size='small'
       disableCloseOnSelect
+      onChange = {(e,value:{attribute:string}[])=>dispatch(modifyConstraints(tableIndex, colIndex, value))}
       getOptionLabel={(option:Attribute) => option.attribute}
       renderOption={(props, option:Attribute, { selected }) => (
         <li {...props}>
@@ -55,7 +57,6 @@ export default function Constraints({tableIndex, colIndex}:Props) {
             checkedIcon={checkedIcon}
             style={{ marginRight: 8 }}
             checked={selected}
-            onChange = {()=>dispatch(modifyConstraints(tableIndex, colIndex, option.attribute))}
           />
           {option.attribute}
         </li>

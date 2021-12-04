@@ -4,7 +4,7 @@
 
 export const databases= {
     //https://www.w3schools.com/sql/sql_datatypes.asp
-    mySQL:[
+    mysql:[
         ['character', 'char'],
         ['character','varchar'],
         ['character', 'binary'],

@@ -1,13 +1,13 @@
 import produce from 'immer';
 
-const tableTemplate = (newTitle:string)=>({
+const tableTemplate = (newTitle:string):Table=>({
     title: newTitle,
-    col:[
+    cols:[
             {
                 id: 'col_title',
                 dataType: 'INTEGER',
                 constraints: ['UUID'],
-                keys: ['PK']
+                keys: [['PK', false]]
             }
         ]
 })
@@ -15,7 +15,7 @@ const tableTemplate = (newTitle:string)=>({
 export interface Col{
     id: string,
     dataType: string,
-    constraints: {[key:string]:[string, boolean]},
+    constraints: string[],
     keys: [string, boolean][]
 }
 export interface Table{
@@ -31,7 +31,7 @@ const defaultTables: TableList= [{
             {
                 id: 'col_title',
                 dataType: 'INTEGER',
-                constraints: {UUID:['UUID',false]},
+                constraints: ['UUID'],
                 keys: [['PK', false]]
             }
         ]
@@ -80,7 +80,7 @@ export const modifyDatatype = (table_index:number, col_index:number, dataType:st
 })
 
 //payload = {table_index, col_index, newConstraints}
-export const modifyConstraints = (table_index:number, col_index:number, constraint:string)=>({
+export const modifyConstraints = (table_index:number, col_index:number, constraint:{attribute:string}[])=>({
     type: orchestrateModel.MODIFY_CONSTRAINTS,
     payload:{table_index, col_index, constraint}
 })
@@ -102,37 +102,38 @@ export const actions = {
 }
 
 
-const tableReducer = (state:TableList = defaultTables, action) => 
-    produce(state, draft=>{
-        const {title=null,table_index=null, col_index=null, id=null, dataType=null, constraint=null, keyIndex=null} = action.payload;
-        switch(action.type){
-            case orchestrateModel.CREATE_TABLE:
-                draft.push(tableTemplate(title));
-                break;
-            case orchestrateModel.REMOVE_TABLE:
-                draft.slice(table_index, 1);
-                break;
-            case orchestrateModel.MODIFY_TITLE:
-                draft[table_index].title = title;
-                break;
-            case orchestrateModel.MODIFY_ID:
-                draft[table_index].cols[col_index].id = id;
-                break;
-            case orchestrateModel.MODIFY_DATATYPE:
-                draft[table_index].cols[col_index].dataType = dataType;
-                break;
-            case orchestrateModel.MODIFY_CONSTRAINTS:
-                const prevConstraint = state[table_index].cols[col_index].constraints[constraint][1];
-                draft[table_index].cols[col_index].constraints[constraint][1] = !prevConstraint;
-                break;
-            case orchestrateModel.MODIFY_KEYS:
-                const toggle = state[table_index].cols[col_index].keys[keyIndex][1]
-                draft[table_index].cols[col_index].keys[keyIndex][1] = toggle;
-                break;
-            default:
-                break;
-        }
-    }
-);
+const tableReducer = (state:TableList = defaultTables, action) => {
+    const load = action.payload;
+    return(
+        produce(state, draft=>{
+            switch(action.type){
+                case orchestrateModel.CREATE_TABLE:
+                    draft.push(tableTemplate(load.title));
+                    break;
+                case orchestrateModel.REMOVE_TABLE:
+                    draft.slice(load.table_index, 1);
+                    break;
+                case orchestrateModel.MODIFY_TITLE:
+                    draft[load.table_index].title = load.title;
+                    break;
+                case orchestrateModel.MODIFY_ID:
+                    draft[load.table_index].cols[load.col_index].id = load.id;
+                    break;
+                case orchestrateModel.MODIFY_DATATYPE:
+                    draft[load.table_index].cols[load.col_index].dataType = load.dataType;
+                    break;
+                case orchestrateModel.MODIFY_CONSTRAINTS:
+                    draft[load.table_index].cols[load.col_index].constraints = load.constraint.map(c=>c.attribute);
+                    break;
+                case orchestrateModel.MODIFY_KEYS:
+                    const toggle = state[load.table_index].cols[load.col_index].keys[load.keyIndex][1]
+                    draft[load.table_index].cols[load.col_index].keys[load.keyIndex][1] = toggle;
+                    break;
+                default:
+                    break;
+            }
+        })
+    )
+};
 
 export default tableReducer;

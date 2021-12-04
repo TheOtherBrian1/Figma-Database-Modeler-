@@ -7,40 +7,41 @@ import DataType from './DataType/DataType';
 import Id from './Id/Id';
 
 
-const VisualEditor = ()=>{
+const Table = ()=>{
     const tableList = useAppSelector(state=>state.tableReducer);
 
     return(
         <div className = "table-wrapper">
             {
-                tableList.map((table:Table, tableIndex)=>
-                    <div className = "table-body">
-                        <div className = "title-block">
-                            <h2>{table.title}</h2>
-                        </div>
-                        {
-                            table.cols.map((block:Col, colIndex)=>
-                                <div className = "column-block">
-                                    <div className = "">
-                                        <Id tableIndex = {tableIndex} colIndex = {colIndex} />
-                                    </div>
-                                    <div className = "">
-                                        <DataType tableIndex = {tableIndex} colIndex = {colIndex} />
-                                    </div>
-                                    <div className = "">
-                                        <Constraints tableIndex = {tableIndex} colIndex = {colIndex}/>
-                                    </div>
-                                    <div className ="">
-                                        <KeyButtons tableIndex = {tableIndex} colIndex = {colIndex}/>
-                                    </div>
-                                </div>
-                            )
-                        }
+                tableList && tableList.map((table:Table, tableIndex)=>
+                <div className = "table-body" key = {table.title + tableIndex}>
+                    <div className = "title-block">
+                        <h2>{table.title}</h2>
                     </div>
-                )
-            }
+                    {
+                        table.cols.map((block:Col, colIndex)=>
+                            <div className = "column-block" key = {table.title + tableIndex + colIndex}>
+                                <div className = "id-block">
+                                    <Id tableIndex = {tableIndex} colIndex = {colIndex} />
+                                </div>
+                                <div className = "data-type-block">
+                                    <DataType tableIndex = {tableIndex} colIndex = {colIndex} />
+                                </div>
+                                <div className = "constraints-block">
+                                    <Constraints tableIndex = {tableIndex} colIndex = {colIndex}/>
+                                </div>
+                                <div className ="keybuttons-block">
+                                    <KeyButtons tableIndex = {tableIndex} colIndex = {colIndex}/>
+                                </div>
+                            </div>
+                        )
+                    }
+                </div>
+            )
+}
+                                
         </div>
     )
 }
 
-export default VisualEditor;
+export default Table;
