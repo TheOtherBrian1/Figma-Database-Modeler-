@@ -5,7 +5,6 @@ import SelectTable from './SelectTable/SelectTable';
 import DownloadCodeButtons from './DownloadCodeButtons/DownloadCodeButtons';
 
 const Controller = ()=>{
-
     return(
     <div id = 'controller'>
         <SelectDatabase />

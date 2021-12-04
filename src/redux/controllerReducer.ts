@@ -14,7 +14,7 @@ export const selectDatabase = (database:string)=>({
 });
 
 //payload = {test:boolean}
-export const testSelectedTables = (test:boolean)=>({
+export const testSelectedTables = (test)=>({
     type: orchestrateController.TEST_SELECTED_TABLES,
     payload:{test}
 });
@@ -45,8 +45,10 @@ const defaultController = {
     generateSQL: false
 };
 
+
 const controllerReducer = (state = defaultController, action) => {
     const load = action.payload;
+    console.log(state);
     return(
         produce(state, draft=>{
             switch(action.type){

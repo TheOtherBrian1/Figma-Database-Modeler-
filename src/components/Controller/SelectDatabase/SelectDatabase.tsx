@@ -2,17 +2,25 @@ import * as React from 'react';
 import Box from '@mui/material/Box/';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
+import {useAppDispatch} from '../../../hooks/reduxHooks';
+import {selectDatabase} from '../../../redux/controllerReducer'
+import store from '../../../redux/store';
+
+
+
 export default function SelectDatabase() {
+  console.log(store.getState());
+  const dispatch = useAppDispatch();
   return (
     <Autocomplete
       id="databases"
       sx={{ width: 300 }}
       options={databases}
       autoHighlight
+      onChange= {(e,c:{img:string, label:string})=>dispatch(selectDatabase(c.label))}
       getOptionLabel={(option) => option.label}
       renderOption={(props, option) => (
         <Box component="li" sx={{ '& > img': { mr: 2, flexShrink: 0 } }} {...props}>
-          {console.log(option)}
           <img
             loading="lazy"
             width="20"
@@ -43,26 +51,26 @@ const countries = [
 const databases = [
   {
     img: 'https://cloud-object-storage-a5-cos-static-web-hosting-rc0.s3.us-east.cloud-object-storage.appdomain.cloud/mongodb.svg',
-    label: 'MongoDB'
+    label: 'mongodb'
   },
   {
     img: 'https://cloud-object-storage-a5-cos-static-web-hosting-rc0.s3.us-east.cloud-object-storage.appdomain.cloud/postgresql.png',
-    label: 'PostgreSQL'
+    label: 'postgresql'
   },
   {
     img: 'https://cloud-object-storage-a5-cos-static-web-hosting-rc0.s3.us-east.cloud-object-storage.appdomain.cloud/mysql.svg',
-    label: 'MySQL'
+    label: 'mysql'
   },
   {
     img: 'https://cloud-object-storage-a5-cos-static-web-hosting-rc0.s3.us-east.cloud-object-storage.appdomain.cloud/access.png',
-    label: 'Access'
+    label: 'access'
   },
   {
     img: 'https://cloud-object-storage-a5-cos-static-web-hosting-rc0.s3.us-east.cloud-object-storage.appdomain.cloud/oracle.png',
-    label: 'Oracle'
+    label: 'oracle'
   },
   {
     img: 'https://cloud-object-storage-a5-cos-static-web-hosting-rc0.s3.us-east.cloud-object-storage.appdomain.cloud/sql-server.svg',
-    label: 'SQL Server'
+    label: 'sql server'
   }
 ]

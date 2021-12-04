@@ -21,8 +21,8 @@ export default function DataType({tableIndex, colIndex}:Props) {
   return (
     <Autocomplete
       options={databases[selectedDatabase]}
-      defaultValue={databases[selectedDatabase][0]}
-      onChange={(e,value)=>dispatch(modifyDatatype(tableIndex, colIndex, value))}
+      
+      onChange={(e,value:string)=>dispatch(modifyDatatype(tableIndex, colIndex, value))}
       groupBy={(option) => option[0]}
       getOptionLabel={(option) => option[1]}
       sx={{ width: 300 }}

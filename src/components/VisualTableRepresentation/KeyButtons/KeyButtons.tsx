@@ -2,7 +2,6 @@ import * as React from 'react';
 import ToggleButton from '@mui/material/ToggleButton';
 import {useAppDispatch, useAppSelector} from '../../../hooks/reduxHooks';
 import {modifyKeys} from '../../../redux/tableReducer';
-import store from '../../../redux/store';
 
 interface Props{
   tableIndex: number,
