@@ -32,7 +32,7 @@ const defaultTables: TableList= [{
                 id: 'col_title',
                 dataType: 'INTEGER',
                 constraints: ['UUID'],
-                keys: [['PK', false]]
+                keys: [['PK', false], ['FK', true]]
             }
         ]
 }];

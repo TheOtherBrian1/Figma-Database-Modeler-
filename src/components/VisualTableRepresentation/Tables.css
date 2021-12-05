@@ -1,5 +1,86 @@
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&family=Work+Sans:wght@600&display=swap');
 :root{
+    --container-background-color: #1E1F22;
+    
+    --standard-font: 'IBM Plex Mono', monospace;
+    --standard-font-size: 14px;
+    --standard-font-color: white;
+    --standard-padding: 11px;
+    
+    --title-font: 'Work Sans', sans-serif;
+    --title-font-size: 16px;
+    --title-background-color: rgba(255,255,255, .2);
+    
+    --null-text-color: rgba(255,255,255,.6);
+    --numeric-text-color: #EFC900;
+    --character-text-color: #F17400;
+    --date-text-color: #00D0AB;
+}
+.table{
+    width: 100%;
+    max-width: 380px;
+    border-radius: 4px;
+    background-color: var(--container-background-color);
+}
+.table-title-container{
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 0 var(--standard-padding);
+    background-color: var(--title-background-color);
+}
+.table-title{
+    padding: 0;
+    margin: 0;
+    color: var(--standard-font-color);
+    font-family: var(--title-font);
+    font-weight: 600;
+    font-size: var(--title-font-size);
+}
+.column-block{
+    height: 40px;
+    display: flex;
+    align-items: center;
+}
+.fixing-block{
+    margin:5px;
+    position: relative;
+    height: 30px;
+    width: 100%;
+    display: flex;
+}
+
+.column-block > div{
+    position: relative;
+    margin: 10px;
+    height: 30px !important;
+}
+.id-block{
+    width: 20%;
+    margin: 2px;
+}
+.data-type-block{
+    width: 30%;;
+    margin: 2px;
+}
+.constraints-block{
+    width: 50%;
+    margin: 2px;
+}
+.keybuttons-block{
+    width: 90px;
+    height: 40px;
+    margin: 2px;
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+/*
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&family=Work+Sans:wght@600&display=swap');
+:root{
 --container-background-color: #1E1F22;
 
 --standard-font: 'IBM Plex Mono', monospace;
@@ -130,3 +211,4 @@ position: relative;
 .input-cont:not(.last){
 border-bottom: inset 10px solid grey;
 }
+*/

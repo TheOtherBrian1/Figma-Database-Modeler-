@@ -14,7 +14,7 @@ export default function SelectDatabase() {
   return (
     <Autocomplete
       id="databases"
-      sx={{ width: 300 }}
+      fullWidth = {true}
       options={databases}
       autoHighlight
       onChange= {(e,c:{img:string, label:string})=>dispatch(selectDatabase(c.label))}

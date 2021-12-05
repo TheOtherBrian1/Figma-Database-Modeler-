@@ -1,21 +1,9 @@
 import * as React from "react";
-//import { styled } from "@mui/material/styles";
 import TextField from "@mui/material/TextField";
 import {useAppDispatch} from '../../../hooks/reduxHooks';
 import {modifyId} from '../../../redux/tableReducer'
-/*
-const Autocomplete = styled(MuiAutocomplete)({
-  ".MuiAutocomplete-inputRoot": {
-    width: 80,
-    color: "white",
-    fontFamily: "'IBM Plex Mono', monospace",
-  },
-  ".Mui-focused":{
-    width: 200,
-    zIndex: 2
-  }
-});
-*/
+
+
 
 interface Props{
   tableIndex: number,
@@ -27,11 +15,20 @@ export default function Id ({tableIndex, colIndex}:Props){
 
   return (
     <TextField
+      sx={{
+        height: 30,
+        '.Mui-focused':{
+          position: 'absolute',
+          width: 200,
+          zIndex: 2,
+          backgroundColor: 'green'
+        }
+      }}
       label="Size"
       placeholder='id'
-      defaultValue="Small"
+      defaultValue="id"
       size="small"
       onChange={e=>dispatch(modifyId(tableIndex, colIndex, e.target.value))}
-    />
+    >hello</TextField>
   );
 }

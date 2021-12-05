@@ -9,22 +9,32 @@ import {useAppDispatch, useAppSelector} from '../../../hooks/reduxHooks';
 import {modifyConstraints} from '../../../redux/tableReducer';
 import store from '../../../redux/store';
 
-const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
-const checkedIcon = <CheckBoxIcon fontSize="small" />;
+const icon = <CheckBoxOutlineBlankIcon fontSize="small" color = "disabled" />;
+const checkedIcon = <CheckBoxIcon fontSize="small"/>;
 
 const Autocomplete = styled(MuiAutocomplete)({
     ".MuiAutocomplete-inputRoot": {
-        width: 150,
+      color: 'white',
+      maxWidth: 150,
       fontFamily: "'IBM Plex Mono', monospace",     
-      flexWrap: 'nowrap'
+      flexWrap: 'nowrap',
+      overflow: 'hidden',
+      whiteSpace: 'nowrap'
     },
-    ".MuiAutocomplete-inputRoot:focus-within":{
-        width: 'auto'
+    ".MuiAutocomplete-tag":{
+      overflow: 'hidden',
+      maxWidth: '80%',
     },
     "& .MuiChip-root":{
         backgroundColor: 'gray',
         opacity: .7,
         color: 'white'
+    },
+    ".MuiAutocomplete-clearIndicator":{
+      color: 'red'
+    },
+    ".MuiAutocomplete-popupIndicator":{
+      color: 'red'
     }
   });
 interface Attribute{
@@ -54,7 +64,7 @@ export default function Constraints({tableIndex, colIndex}:Props) {
           <Checkbox
             icon={icon}
             checkedIcon={checkedIcon}
-            style={{ marginRight: 8 }}
+            style={{ marginRight: 8}}
             checked={selected}
           />
           {option.attribute}
