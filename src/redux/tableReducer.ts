@@ -33,6 +33,21 @@ const defaultTables: TableList= [{
                 dataType: 'INTEGER',
                 constraints: ['UUID'],
                 keys: [['PK', false], ['FK', true]]
+            },{
+                id: 'col_title',
+                dataType: 'INTEGER',
+                constraints: ['UUID'],
+                keys: [['PK', false], ['FK', true]]
+            }
+        ]
+},{
+    title: 'untitled',
+    cols:[
+            {
+                id: 'col_title',
+                dataType: 'INTEGER',
+                constraints: ['UUID'],
+                keys: [['PK', false], ['FK', true]]
             }
         ]
 }];

@@ -23,7 +23,6 @@ const Table = ()=>{
                     {
                         table.cols.map((block:Col, colIndex)=>
                             <div className = "column-block" key = {table.title + tableIndex + colIndex}>
-                                <div className = "fixing-block">
                                     <div className = "id-block">
                                         <Id tableIndex = {tableIndex} colIndex = {colIndex} />
                                     </div>
@@ -36,7 +35,6 @@ const Table = ()=>{
                                     <div className ="keybuttons-block">
                                         <KeyButtons tableIndex = {tableIndex} colIndex = {colIndex}/>
                                     </div>
-                                </div>
                             </div>
                         )
                     }

@@ -15,14 +15,20 @@ export default function Id ({tableIndex, colIndex}:Props){
 
   return (
     <TextField
+      style = {{color: 'white'}}
       sx={{
         height: 30,
+        "& .MuiInputBase-root":{
+          color: 'white'
+        },
         '.Mui-focused':{
+          color: 'white',
           position: 'absolute',
           width: 200,
           zIndex: 2,
-          backgroundColor: 'green'
-        }
+          backgroundColor: '#1E1F22'
+        },
+        '.MuiInputLabel-root':{color: 'white'}
       }}
       label="Size"
       placeholder='id'

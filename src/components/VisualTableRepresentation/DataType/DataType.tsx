@@ -27,7 +27,7 @@ export default function DataType({tableIndex, colIndex}:Props) {
   return (
     <Autocomplete
       options={databases[selectedDatabase]}
-      
+      defaultValue='integer'
       onChange={(e,value:string)=>dispatch(modifyDatatype(tableIndex, colIndex, value))}
       groupBy={(option) => option[0]}
       getOptionLabel={(option) => option[1]}
@@ -35,13 +35,22 @@ export default function DataType({tableIndex, colIndex}:Props) {
       fullWidth={true}
       PopperComponent={CustomPopper}
       sx={{ 
-        width: 150, 
+        ".MuiInputBase-root":{
+          padding: 0,
+          color: 'white',
+          p: 0,
+          width: 200
+        },
         ".Mui-focused":{
           width: 300, 
-          zIndex: 2
+          zIndex: 2,
+          color: 'white',
+          position: 'absolute',
+          backgroundColor: '#1E1F22'
         }
       }}
-      renderInput={(params) => <TextField {...params} label="Data Types" />}
+      
+      renderInput={(params) => <TextField sx={{'.MuiInputLabel-root':{color: 'white'}}}{...params} label="Data Types" />}
     />
   );
 }

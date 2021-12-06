@@ -71,7 +71,7 @@ export default function Constraints({tableIndex, colIndex}:Props) {
         </li>
       )}
       renderInput={(params) => (
-        <TextField {...params} label="SQL Constraints" />
+        <TextField sx={{'.MuiInputLabel-root':{color: 'white'}}} {...params} label="SQL Constraints" />
       )}
     />
   );
