@@ -1,15 +1,17 @@
-interface Rgb {
+export interface Rgb {
     r: number;
     g: number;
     b: number;
   }
   
-export function colorConverter(color:Rgb|null, hex:null|string='000000'){
-    if(!color){
-      const r = parseInt(hex.slice(0,2), 16);
-      const g = parseInt(hex.slice(2,4), 16);
-      const b = parseInt(hex.slice(4,6), 16);
-      return {r:r/255, g:g/255, b:b/255};
+export function colorConverter(color:Rgb|string){
+    if(typeof color === 'string'){
+      if(color.length !== 6)
+        throw Error('hex colors must have 6 characters');
+      const r = parseInt(color.slice(0,2), 16)/255;
+      const g = parseInt(color.slice(2,4), 16)/255;
+      const b = parseInt(color.slice(4,6), 16)/255;
+      return {r,g,b};
     }
     else{
       color.r /= 255;

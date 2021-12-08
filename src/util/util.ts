@@ -15,13 +15,7 @@ export function createTable(tableName){
     return table;
 }
   
-interface Fonts{
-    family: string,
-    style: string
-}
-export async function callFont(font:Fonts){
-    await figma.loadFontAsync(font);
-}
+
 export function createTitle(tableName:string){
     const header:FrameNode = figma.createFrame();
     header.name = 'Title';

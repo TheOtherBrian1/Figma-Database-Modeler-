@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "target": "es6",
+    "experimentalDecorators": true,
     "jsx": "react",
     "lib": ["es6", "DOM"],
     "moduleResolution": "node",

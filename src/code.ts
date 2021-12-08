@@ -6,7 +6,7 @@
    colorConverter,
    callFont,
    createId
-} from './util';
+} from './util/util';
 
  figma.showUI(__html__);
 
