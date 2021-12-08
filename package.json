@@ -10,7 +10,7 @@
   "author": "Brian Brennglass",
   "license": "MIT",
   "devDependencies": {
-    "@figma/plugin-typings": "^1.39.0",
+    "@figma/plugin-typings": "^1.39.1",
     "@svgr/webpack": "^6.0.0",
     "@types/node": "^16.11.10",
     "@types/react": "^17.0.37",
