@@ -4,14 +4,16 @@ import { createFrameNode, Frame } from '../util/frame';
 export default function createConstraint(name:string, constraints:string[]) {
     const widget = createFrameNode({
         name, 
+        paddingDirection: [0,10,0,10],
         color: '222326',
-        resize:[1,40],
         itemSpacing: 8,
-        mainAxis: 'HORIZONTAL'
+        mainAxis: 'HORIZONTAL', 
+        mainAxisAlign: 'MIN',
+        resize: [10,40]
     });
 
     for(const constraint of constraints){
-        const id = createFrameNode({paddingDirection: [0,8,0,8], cornerRadius:30, name: constraint, color: '626364'});
+        const id = createFrameNode({layoutAlign: 'CENTER', paddingDirection: [0,8,0,8], cornerRadius:30, name: constraint, color: '626364'});
         const text = createTextNode({textCase:"UPPER", name: 'constraint', characters: constraint, fontSize: 14, style: 'Regular'});
         id.appendChild(text);
         widget.appendChild(id);

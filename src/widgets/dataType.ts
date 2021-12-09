@@ -15,7 +15,7 @@ const dataTypeColors = {
 }
 
 export default function createDataType(name:string, dataType:DataType):FrameNode {
-    const id = createFrameNode({name: 'id_'+name, color: '222326', paddingDirection: [0,10,0,10]});
+    const id = createFrameNode({mainAxisAlign: 'MIN',resize: [1,40],altAxisAlign: "CENTER", name: 'id_'+name, color: '222326', paddingDirection: [0,10,0,10]});
     const text = createTextNode({name, color: dataTypeColors[dataType], characters: name, fontSize: 14, textCase: 'UPPER', style: 'Regular'})
     id.appendChild(text);
     return id;

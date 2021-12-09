@@ -51,5 +51,6 @@ export function createFrameNode({
     frame.cornerRadius = cornerRadius;
     frame.primaryAxisAlignItems = mainAxisAlign;
     frame.counterAxisAlignItems =  altAxisAlign;
+    frame.layoutAlign = layoutAlign;
     return frame;
 }

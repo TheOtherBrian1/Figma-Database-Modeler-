@@ -6,6 +6,7 @@ import createDataType from './widgets/dataType'
 import createConstraint from './widgets/constraint';
 import createTable from './widgets/table';
 import createTitle from './widgets/title';
+import {createFrameNode} from './util/frame';
 
  figma.showUI(__html__);
 
@@ -62,9 +63,12 @@ async function generatePopulatedTable(){
         primaryKeyColumn.appendChild(key);
       columns.push(primaryKeyColumn);
     
-    columns.forEach(column => table.appendChild(column));
+    const grid = createFrameNode({mainAxis: 'HORIZONTAL', name: 'tableData'});
+    columns.forEach(column => grid.appendChild(column));
+    table.appendChild(grid);
+      
 
-    figma.closePlugin();
+   // figma.closePlugin();
   }
 }
 generatePopulatedTable();

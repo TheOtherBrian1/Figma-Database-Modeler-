@@ -7,6 +7,7 @@ export interface Text{
     fontSize?: number;
     alignHorizontal?:"CENTER" | "LEFT" | "RIGHT" | "JUSTIFIED";
     resizeWithoutConstraints?: [number, number];
+    resize?: [number, number] | null;
     //type?: string;
     color?: string|Rgb;
     alignVertical?:"TOP" | "CENTER" | "BOTTOM";
@@ -29,6 +30,7 @@ export function createTextNode({
     alignVertical = "CENTER",
     boxAutoResize = 'WIDTH_AND_HEIGHT',
     name,
+    resize = null,
     autoRename=true,
     characters,
     textCase="ORIGINAL"
@@ -39,6 +41,8 @@ export function createTextNode({
     text.textAlignHorizontal = alignHorizontal;
     text.textAlignVertical = alignVertical;
     text.name = name;
+    if (resize)
+        text.resize(...resize);
     text.textAutoResize = boxAutoResize;
     text.autoRename = autoRename;
     text.characters = characters;

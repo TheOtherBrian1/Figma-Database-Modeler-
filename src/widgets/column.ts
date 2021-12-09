@@ -15,6 +15,8 @@ import {createFrameNode, Frame} from '../util/frame';
 
 const columnSettings = {
     mainAxis: 'VERTICAL',
+    altAxisSizing: 'AUTO',
+    mainAxisSizing: 'AUTO',
 };
 
 export default function createColumn(userSettings: Frame){

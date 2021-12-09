@@ -3,6 +3,7 @@ import { createFrameNode, Frame } from '../util/frame';
 
 const defaultKeySettings = {
     mainAxis: 'VERTICAL',
+    resize:[10,40],
     mainAxisSizing: 'AUTO'
 }
 
