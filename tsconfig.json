@@ -8,11 +8,11 @@
     "typeRoots": [
       "./node_modules/@types",
       "./node_modules/@figma",
-      "./src/assets/types"
+      "ui/assets/types"
     ],
     "sourceMap": true,
     "checkJs": true
   },
-  "include": ["src/**/*"],
+  "include": ["ui/**/*", "code/**/*"],
   "exclude": ["node_modules"]
 }
