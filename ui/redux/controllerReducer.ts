@@ -48,7 +48,6 @@ const defaultController = {
 
 const controllerReducer = (state = defaultController, action) => {
     const load = action.payload;
-    console.log(state);
     return(
         produce(state, draft=>{
             switch(action.type){

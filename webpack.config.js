@@ -42,7 +42,6 @@ module.exports = (env, argv) => ({
       inject: "body",
       template: './ui/ui.html',
       filename: 'ui.html',
-      //inlineSource: '*.(js)$',
       chunks: ['ui'],
     }),
     new InlineChunkHtmlPlugin(HtmlWebpackPlugin, [/ui/])

@@ -9,7 +9,6 @@ import store from '../../../redux/store';
 
 
 export default function SelectDatabase() {
-  console.log(store.getState());
   const dispatch = useAppDispatch();
   return (
     <Autocomplete

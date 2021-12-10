@@ -12,7 +12,6 @@ interface Props{
 export default function KeyButtons({tableIndex, colIndex}:Props) {
   const dispatch = useAppDispatch();
   const buttons = useAppSelector(state=>state.tableReducer[tableIndex].cols[colIndex].keys)
-  console.log(buttons, 'milk');
   return(
     <>
       {

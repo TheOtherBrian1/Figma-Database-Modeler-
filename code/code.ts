@@ -12,8 +12,11 @@ import {createFrameNode} from './util/frame';
 
   figma.ui.resize(400, 600);
 
-async function generatePopulatedTable(){
 
+
+
+
+async function generatePopulatedTable(){
   await callFont([
     { family: "Work Sans", style: "SemiBold" },
     { family: "IBM Plex Mono", style: "Light" },
@@ -70,6 +73,43 @@ async function generatePopulatedTable(){
 }
 generatePopulatedTable();
 
+const orchestrateModel = {
+  CREATE_TABLE: 'CREATE_TABLE',
+  REMOVE_TABLE: 'REMOVE_TABLE',
+  MODIFY_TITLE: 'MODIFY_TITLE',
+  MODIFY_ID: 'MODIFY_ID',
+  MODIFY_DATATYPE: 'MODIFY_DATATYPE',
+  MODIFY_CONSTRAINTS: 'MODIFY_CONSTRAINTS',
+  MODIFY_KEYS: 'MODIFY_KEYS'
+}
+
+figma.ui.onmessage = (message) => {
+  switch(message.type){
+    case orchestrateModel.CREATE_TABLE:
+        
+        break;
+    case orchestrateModel.REMOVE_TABLE:
+        
+        break;
+    case orchestrateModel.MODIFY_TITLE:
+        
+        break;
+    case orchestrateModel.MODIFY_ID:
+
+        break;
+    case orchestrateModel.MODIFY_DATATYPE:
+        
+        break;
+    case orchestrateModel.MODIFY_CONSTRAINTS:
+        
+        break;
+    case orchestrateModel.MODIFY_KEYS:
+        
+        break;
+    default:
+        break;
+  }
+}
 
 
 
