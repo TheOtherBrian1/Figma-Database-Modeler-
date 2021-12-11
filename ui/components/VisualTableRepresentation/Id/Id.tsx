@@ -30,7 +30,7 @@ export default function Id ({tableIndex, colIndex}:Props){
         },
         '.MuiInputLabel-root':{color: 'white'}
       }}
-      label="Size"
+      label="ID"
       placeholder='id'
       defaultValue="id"
       size="small"

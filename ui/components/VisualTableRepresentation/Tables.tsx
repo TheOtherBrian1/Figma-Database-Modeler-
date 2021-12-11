@@ -4,7 +4,9 @@ import {Table, Col} from '../../redux/tableReducer';
 import KeyButtons from './KeyButtons/KeyButtons';
 import Constraints from './Constraints/Constraints';
 import DataType from './DataType/DataType';
+import Header from './Header/Header';
 import Id from './Id/Id';
+import DropDown from './DropDown/DropDown';
 import "./Tables.css";
 
 
@@ -20,6 +22,7 @@ const Table = ()=>{
                         <h2 className = "table-title">{table.title}</h2>
                     </div>
                     <div className = "table-body">
+                    {/*   <Header /> */}
                     {
                         table.cols.map((block:Col, colIndex)=>
                             <div className = "column-block" key = {table.title + tableIndex + colIndex}>
@@ -34,6 +37,9 @@ const Table = ()=>{
                                     </div>
                                     <div className ="keybuttons-block">
                                         <KeyButtons tableIndex = {tableIndex} colIndex = {colIndex}/>
+                                    </div>
+                                    <div className = "drop-down-block">
+                                        <DropDown />
                                     </div>
                             </div>
                         )

@@ -17,6 +17,7 @@
     --date-text-color: #00D0AB;
 }
 .table{
+    margin-top: 20px;
     width: 100%;
     max-width: 380px;
     border-radius: 4px;

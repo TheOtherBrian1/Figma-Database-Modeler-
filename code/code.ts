@@ -7,14 +7,11 @@ import createConstraint from './widgets/constraint';
 import createTable from './widgets/table';
 import createTitle from './widgets/title';
 import {createFrameNode} from './util/frame';
+import { modifyConstraints, modifyDatatype, modifyKeys } from '../ui/redux/tableReducer';
 
- figma.showUI(__html__);
+figma.showUI(__html__);
 
-  figma.ui.resize(400, 600);
-
-
-
-
+figma.ui.resize(400, 600);
 
 async function generatePopulatedTable(){
   await callFont([
@@ -83,28 +80,31 @@ const orchestrateModel = {
   MODIFY_KEYS: 'MODIFY_KEYS'
 }
 
+
 figma.ui.onmessage = (message) => {
+  //figma.getNodeById(id: string);
+  //node.id
   switch(message.type){
     case orchestrateModel.CREATE_TABLE:
-        
+        //createTable();
         break;
     case orchestrateModel.REMOVE_TABLE:
-        
+        //deleteTable();
         break;
     case orchestrateModel.MODIFY_TITLE:
-        
+        //modifyTitle();
         break;
     case orchestrateModel.MODIFY_ID:
-
+        //modifyId();
         break;
     case orchestrateModel.MODIFY_DATATYPE:
-        
+        //modifyDatatype();
         break;
     case orchestrateModel.MODIFY_CONSTRAINTS:
-        
+        //modifyConstraints();
         break;
     case orchestrateModel.MODIFY_KEYS:
-        
+        //modifyKeys();
         break;
     default:
         break;
