@@ -39,7 +39,7 @@ const Table = ()=>{
                                         <KeyButtons tableIndex = {tableIndex} colIndex = {colIndex}/>
                                     </div>
                                     <div className = "drop-down-block">
-                                        <DropDown />
+                                        <DropDown  tableIndex = {tableIndex} colIndex = {colIndex}/>
                                     </div>
                             </div>
                         )

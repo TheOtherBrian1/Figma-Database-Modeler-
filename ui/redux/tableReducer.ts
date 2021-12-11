@@ -1,4 +1,5 @@
 import produce from 'immer';
+import createColumn from '../../code/widgets/column';
 
 const tableTemplate = (newTitle:string):Table=>({
     title: newTitle,
@@ -7,10 +8,17 @@ const tableTemplate = (newTitle:string):Table=>({
                 id: 'col_title',
                 dataType: 'INTEGER',
                 constraints: ['UUID'],
-                keys: [['PK', false]]
+                keys: [['PK', false], ['FK', false]]
             }
         ]
 })
+
+const columnTemplate = ():Col=>({
+    id: 'raising',
+    dataType: 'INTEGER',
+    constraints: ['INC'],
+    keys: [['PK', false], ['AK', true]]
+});
 
 export interface Col{
     id: string,
@@ -55,6 +63,8 @@ const defaultTables: TableList= [{
 
 
 const orchestrateModel = {
+    REMOVE_COL: 'REMOVE_COL',
+    ADD_COL: 'ADD_COL',
     CREATE_TABLE: 'CREATE_TABLE',
     REMOVE_TABLE: 'REMOVE_TABLE',
     MODIFY_TITLE: 'MODIFY_TITLE',
@@ -65,19 +75,25 @@ const orchestrateModel = {
 }
 
 //payload = {title:string}
-const createTable = (title:string)=>({
+export const createTable = (title:string)=>({
     type: orchestrateModel.CREATE_TABLE,
     payload:{title}
 })
 
+//payload = {table_index:number, col_index:number}
+export const createCol = (table_index:number, col_index:number)=>({
+    type: orchestrateModel.ADD_COL,
+    payload:{table_index, col_index}
+})
+
 //payload = {table_index:number}
-const removeTable = (table_index:number)=>({
+export const removeTable = (table_index:number)=>({
     type: orchestrateModel.REMOVE_TABLE,
     payload:{table_index}
 })
 
 //payload = {table_index:number, title:string}
-const modifyTitle = (table_index:number, title:string)=>({
+export const modifyTitle = (table_index:number, title:string)=>({
     type: orchestrateModel.MODIFY_TITLE,
     payload:{table_index, title}
 })
@@ -92,6 +108,12 @@ export const modifyId = (table_index:number, col_index:number, id:string)=>({
 export const modifyDatatype = (table_index:number, col_index:number, dataType:string)=>({
     type: orchestrateModel.MODIFY_DATATYPE,
     payload:{table_index, col_index, dataType}
+})
+
+//payload = {table_index, col_index, dataType}
+export const removeCol = (table_index:number, col_index:number)=>({
+    type: orchestrateModel.REMOVE_COL,
+    payload:{table_index, col_index}
 })
 
 //payload = {table_index, col_index, newConstraints}
@@ -113,7 +135,9 @@ export const actions = {
     modifyId,
     modifyDatatype,
     modifyConstraints,
-    modifyKeys
+    modifyKeys,
+    removeCol,
+    createCol
 }
 
 
@@ -127,6 +151,15 @@ const tableReducer = (state:TableList = defaultTables, action) => {
                     break;
                 case orchestrateModel.REMOVE_TABLE:
                     draft.slice(load.table_index, 1);
+                    break;
+                case orchestrateModel.REMOVE_COL:
+                    draft[load.table_index].cols.splice(load.column_index, 1);
+                    break;
+                case orchestrateModel.ADD_COL:
+                    console.log('ADD_COL', 'table_index', load.table_index, 'col_index', load.col_index);
+                    console.log(columnTemplate());
+                    console.log(state)
+                    draft[load.table_index].cols.splice(load.column_index, 0, columnTemplate());
                     break;
                 case orchestrateModel.MODIFY_TITLE:
                     draft[load.table_index].title = load.title;

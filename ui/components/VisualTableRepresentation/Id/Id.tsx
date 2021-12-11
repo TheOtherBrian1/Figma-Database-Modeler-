@@ -1,6 +1,6 @@
 import * as React from "react";
 import TextField from "@mui/material/TextField";
-import {useAppDispatch} from '../../../hooks/reduxHooks';
+import {useAppDispatch, useAppSelector} from '../../../hooks/reduxHooks';
 import {modifyId} from '../../../redux/tableReducer'
 
 
@@ -12,6 +12,7 @@ interface Props{
 
 export default function Id ({tableIndex, colIndex}:Props){
   const dispatch = useAppDispatch();
+  const id = useAppSelector(state=>state.tableReducer[tableIndex].cols[colIndex].id)
 
   return (
     <TextField
@@ -33,8 +34,9 @@ export default function Id ({tableIndex, colIndex}:Props){
       label="ID"
       placeholder='id'
       defaultValue="id"
+      value = {id}
       size="small"
       onChange={e=>dispatch(modifyId(tableIndex, colIndex, e.target.value))}
-    >hello</TextField>
+    />
   );
 }

@@ -11,7 +11,7 @@ import { modifyConstraints, modifyDatatype, modifyKeys } from '../ui/redux/table
 
 figma.showUI(__html__);
 
-figma.ui.resize(400, 600);
+figma.ui.resize(450, 600);
 
 async function generatePopulatedTable(){
   await callFont([
