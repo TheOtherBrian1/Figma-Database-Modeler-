@@ -1,15 +1,16 @@
 import * as React from 'react';
 import ToggleButton from '@mui/material/ToggleButton';
 import {useAppDispatch, useAppSelector} from '../../../hooks/reduxHooks';
-import {modifyKeys} from '../../../redux/tableReducer';
+import {modifyKeys} from '../../../redux/table-interface/actions';
 
 const colors = ['rgba(19,133,255, .2)', 'rgba(255, 161, 19, 0.2)']
 interface Props{
   tableIndex: number,
-  colIndex: number
+  colIndex: number,
+  tableUUID: string
 }
 
-export default function KeyButtons({tableIndex, colIndex}:Props) {
+export default function KeyButtons({tableIndex, colIndex, tableUUID}:Props) {
   const dispatch = useAppDispatch();
   const buttons = useAppSelector(state=>state.tableReducer[tableIndex].cols[colIndex].keys)
   return(
@@ -33,7 +34,7 @@ export default function KeyButtons({tableIndex, colIndex}:Props) {
                   justifyContent: 'center',
               }}
               onChange={(e)=>{
-                dispatch(modifyKeys(tableIndex, colIndex, keyIndex));
+                dispatch(modifyKeys(tableIndex, colIndex, keyIndex, tableUUID));
               }}
             >
               {name}

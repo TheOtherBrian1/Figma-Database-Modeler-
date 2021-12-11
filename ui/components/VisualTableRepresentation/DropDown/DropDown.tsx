@@ -5,16 +5,18 @@ import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import ArrowDropDownCircleIcon from '@mui/icons-material/ArrowDropDownCircle';
 import AddBoxIcon from '@mui/icons-material/AddBox';
 import Button from '@mui/material/Button';
-import {useAppDispatch} from '../../../hooks/reduxHooks';
-import {removeCol, createCol} from '../../../redux/tableReducer';
+import {useAppDispatch, useAppSelector} from '../../../hooks/reduxHooks';
+import {removeCol, createCol} from '../../../redux/table-interface/actions';
 
 interface Props{
     tableIndex: number,
-    colIndex: number
+    colIndex: number,
+    tableUUID: string
 }
 
-export default function DropDown({tableIndex, colIndex}:Props){
+export default function DropDown({tableIndex, colIndex, tableUUID}:Props){
     const dispatch = useAppDispatch();
+    const length = useAppSelector(state=>state.tableReducer[tableIndex].cols.length);
     const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
     const open = Boolean(anchorEl);
     const id = open ? 'simple-popover' : undefined;
@@ -55,13 +57,18 @@ export default function DropDown({tableIndex, colIndex}:Props){
                     horizontal: 'right',
                   }}
             >
-                <DeleteForeverIcon
-                    sx={{color: 'red'}}
-                    onClick={e=>dispatch(removeCol(tableIndex, colIndex))} 
-                />
+                {
+                    length !== 1 && <DeleteForeverIcon
+                        sx={{color: 'red'}}
+                        onClick={e=>{
+                            dispatch(removeCol(tableIndex, colIndex, tableUUID));
+                            handleClose();
+                        }}
+                    />
+                }
                 <AddBoxIcon
                     sx={{color: 'green'}}
-                    onClick={e=>dispatch(createCol(tableIndex, colIndex))} 
+                    onClick={e=>dispatch(createCol(tableIndex, colIndex, tableUUID))} 
                 />
             </Popover>
         </ >

@@ -6,7 +6,7 @@ import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
 import { styled } from "@mui/material/styles";
 import {useAppDispatch, useAppSelector} from '../../../hooks/reduxHooks';
-import {modifyConstraints} from '../../../redux/tableReducer';
+import {modifyConstraints} from '../../../redux/table-interface/actions';
 import store from '../../../redux/store';
 
 const icon = <CheckBoxOutlineBlankIcon fontSize="small" color = "disabled" />;
@@ -44,10 +44,11 @@ type DBSelect = Attribute[];
 
 interface Props{
   tableIndex: number,
-  colIndex: number
+  colIndex: number,
+  tableUUID: string
 }
 
-export default function Constraints({tableIndex, colIndex}:Props) {
+export default function Constraints({tableIndex, colIndex, tableUUID}:Props) {
   const dispatch = useAppDispatch();
   const constraints = useAppSelector(state=>state.tableReducer[tableIndex].cols[colIndex].constraints)
   return (
@@ -57,7 +58,7 @@ export default function Constraints({tableIndex, colIndex}:Props) {
       limitTags={1}
       size='small'
       disableCloseOnSelect
-      onChange = {(e,value:{attribute:string}[])=>dispatch(modifyConstraints(tableIndex, colIndex, value))}
+      onChange = {(e,value:{attribute:string}[])=>dispatch(modifyConstraints(tableIndex, colIndex, value, tableUUID))}
       getOptionLabel={(option:Attribute) => option.attribute}
       renderOption={(props, option:Attribute, { selected }) => (
         <li {...props}>

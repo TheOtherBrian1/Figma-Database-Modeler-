@@ -2,7 +2,7 @@ import * as React from 'react';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import {useAppDispatch, useAppSelector} from '../../../hooks/reduxHooks';
-import {modifyDatatype} from '../../../redux/tableReducer';
+import {modifyDatatype} from '../../../redux/table-interface/actions';
 import { databases } from '../../../constants/data_types';
 import {Popper} from '@mui/material';
 import { styled } from '@mui/system';
@@ -13,10 +13,11 @@ const CustomPopper = (props)=><Popper {...props} style={{width:300}}></Popper>
 
 interface Props{
     tableIndex: number,
-    colIndex: number
-  }
+    colIndex: number,
+    tableUUID: string
+}
 
-export default function DataType({tableIndex, colIndex}:Props) {
+export default function DataType({tableIndex, colIndex, tableUUID}:Props) {
     const dispatch = useAppDispatch();
     const selectedDatabase:string = useAppSelector(state=>{
       if(state.controllerReducer)
@@ -28,7 +29,7 @@ export default function DataType({tableIndex, colIndex}:Props) {
     <Autocomplete
       options={databases[selectedDatabase]}
       defaultValue='integer'
-      onChange={(e,value:string)=>dispatch(modifyDatatype(tableIndex, colIndex, value))}
+      onChange={(e,value:string)=>dispatch(modifyDatatype(tableIndex, colIndex, value, tableUUID))}
       groupBy={(option) => option[0]}
       getOptionLabel={(option) => option[1]}
       disableCloseOnSelect={true}

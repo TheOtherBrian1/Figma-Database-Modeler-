@@ -1,6 +1,6 @@
 import {combineReducers, createStore, applyMiddleware } from 'redux';
-import controllerReducer from './controllerReducer';
-import tableReducer from './tableReducer';
+import controllerReducer from './settings-menu/settings';
+import tableReducer from './table-interface/tableReducer';
 import sendFigmaMessage from './middleware';
 
 const rootReducer = combineReducers({controllerReducer, tableReducer});

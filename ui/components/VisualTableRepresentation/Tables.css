@@ -27,7 +27,7 @@
     height: 40px;
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-between;
     padding: 0 var(--standard-padding);
     background-color: var(--title-background-color);
 }
