@@ -5,11 +5,12 @@ import {tableTemplate, defaultTables, columnTemplate, TableList} from './default
 const tableReducer = (state:TableList = defaultTables, action) => {
     const load = action.payload;
     let tableIndex;
+    let columnIndex;
     return(
         produce(state, draft=>{
             switch(action.type){
                 case orchestrateModel.UPDATE_FIGMA_IDS_NEW_TABLE:
-                    tableIndex = state.findIndex(table=>table.UUID === load.uuid);
+                    tableIndex = state.findIndex(table=>table.uuid === load.uuid);
                     draft[tableIndex].figmaId = load.figmaId.table;
                     draft[tableIndex].cols[0].id[1] = load.figmaId.id;
                     draft[tableIndex].cols[0].dataType[1] = load.figmaId.dataType;
@@ -18,8 +19,8 @@ const tableReducer = (state:TableList = defaultTables, action) => {
                     break;
                 case orchestrateModel.UPDATE_FIGMA_IDS_NEW_COLUMN:
                     //Requires some index to identify 
-                    tableIndex = state.findIndex(table=>table.UUID === load.uuid);
-                    columnIndex = state.findIndex(column=>column.UUID === load.figmaId.uuid);
+                    tableIndex = state.findIndex(table=>table.uuid === load.uuid);
+                    columnIndex = state[tableIndex].cols.findIndex(column=>column.uuid === load.figmaId.uuid);
                     draft[tableIndex].cols[columnIndex].id[1] = load.figmaId.id;
                     draft[tableIndex].cols[columnIndex].dataType[1] = load.figmaId.dataType;
                     draft[tableIndex].cols[columnIndex].constraints[1] = load.figmaId.constraints;
@@ -35,7 +36,7 @@ const tableReducer = (state:TableList = defaultTables, action) => {
                     draft[load.table_index].cols.splice(load.column_index, 1);
                     break;
                 case orchestrateModel.ADD_COL:
-                    draft[load.table_index].cols.splice(load.column_index, 0, columnTemplate());
+                    draft[load.table_index].cols.splice(load.column_index, 0, columnTemplate(load.uuid));
                     break;
                 case orchestrateModel.MODIFY_TITLE:
                     draft[load.table_index].title = load.title;

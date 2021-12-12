@@ -20,16 +20,18 @@ export const newTableUpdateFigmaIds=(uuid:string, figmaIds)=>({
     payload: {uuid, figmaIds}
 })
 
+/*
 //payload = {uuid: string, figmaId: string}
 export const updateFigmaId = (uuid:string, figmaId:FigmaId)=>({
     type: orchestrateModel.UPDATE_FIGMA_ID,
     payload:{uuid, figmaId}
 });
+*/
 
 //payload = {table_index:number, col_index:number}
 export const createCol = (table_index:number, col_index:number,tableUUID:string)=>({
     type: orchestrateModel.ADD_COL,
-    payload:{table_index, col_index,tableUUID}
+    payload:{table_index, col_index, tableUUID, uuid: uuidv4()}
 })
 
 //payload = {table_index:number}

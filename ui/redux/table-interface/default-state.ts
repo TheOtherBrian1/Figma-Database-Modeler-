@@ -13,7 +13,7 @@ export interface Col{
 export interface Table{
     title: [string, FigmaId],
     figmaId: FigmaId,
-    UUID: string|null,
+    uuid: string|null,
     cols: Col[]
 }
 
@@ -24,16 +24,16 @@ export type TableList = Table[];
 export const defaultTables: TableList = [];
 
 //table generator functions----------------------------------------------------
-export const tableTemplate = (UUID:string):Table=>({
+export const tableTemplate = (uuid:string):Table=>({
     title: ['new_table', null],
     figmaId: null,
-    UUID,
-    cols:[columnTemplate()]
+    uuid,
+    cols:[columnTemplate(uuidv4())]
 })
 
-export const columnTemplate = ():Col=>({
+export const columnTemplate = (uuid:string):Col=>({
     figmaId: null,
-    uuid: uuidv4(),
+    uuid,
     id: ['col_title', null],
     dataType: ['int', null],
     constraints: [['NOT NULL'], null],

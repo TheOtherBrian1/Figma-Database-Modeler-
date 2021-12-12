@@ -32,7 +32,7 @@ const Table = ()=>{
                                 fk: any;
                                 id: string;
                                 dataType: string;
-                                constraints: string[];
+                                constraints: string;
                                 pk: any;
                                 table: string;
                             };
@@ -98,7 +98,7 @@ const Table = ()=>{
                             <h2 className = "table-title">{table.title[0]}</h2>
                             <div>
                                 <Button
-                                    onClick={()=>dispatch(removeTable(tableIndex, table.UUID, table.figmaId))}
+                                    onClick={()=>dispatch(removeTable(tableIndex, table.uuid, table.figmaId))}
                                 >
                                     <DeleteForeverIcon 
                                         sx={{color:'#9098a6'}}
@@ -112,19 +112,19 @@ const Table = ()=>{
                             table.cols.map((block:Col, colIndex)=>
                                 <div className = "column-block" key = {table.title[0] + tableIndex + colIndex}>
                                         <div className = "id-block">
-                                            <Id tableIndex = {tableIndex} colIndex = {colIndex} tableUUID = {table.UUID}/>
+                                            <Id tableIndex = {tableIndex} colIndex = {colIndex} tableUUID = {table.uuid}/>
                                         </div>
                                         <div className = "data-type-block">
-                                            <DataType tableIndex = {tableIndex} colIndex = {colIndex} tableUUID = {table.UUID}/>
+                                            <DataType tableIndex = {tableIndex} colIndex = {colIndex} tableUUID = {table.uuid}/>
                                         </div>
                                         <div className = "constraints-block">
-                                            <Constraints tableIndex = {tableIndex} colIndex = {colIndex} tableUUID = {table.UUID}/>
+                                            <Constraints tableIndex = {tableIndex} colIndex = {colIndex} tableUUID = {table.uuid}/>
                                         </div>
                                         <div className ="keybuttons-block">
-                                            <KeyButtons tableIndex = {tableIndex} colIndex = {colIndex} tableUUID = {table.UUID}/>
+                                            <KeyButtons tableIndex = {tableIndex} colIndex = {colIndex} tableUUID = {table.uuid}/>
                                         </div>
                                         <div className = "drop-down-block">
-                                            <DropDown  tableIndex = {tableIndex} colIndex = {colIndex} tableUUID = {table.UUID}/>
+                                            <DropDown  tableIndex = {tableIndex} colIndex = {colIndex} tableUUID = {table.uuid}/>
                                         </div>
                                 </div>
                             )

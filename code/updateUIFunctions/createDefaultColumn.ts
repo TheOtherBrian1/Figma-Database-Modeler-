@@ -11,7 +11,7 @@ export default function createDefaultColumns(uuid:string){
         fk:null,
         id:'',
         dataType:'',
-        constraints:[''],
+        constraint: '',
         pk: null
     };
     
@@ -35,7 +35,7 @@ export default function createDefaultColumns(uuid:string){
     const constraintsColumn = createColumn({name:'CONSTRAINTS', color:'4E4F51'});
         const cst = createConstraints('constraint1', ['NOT NULL']);
         constraintsColumn.appendChild(cst.node);
-        nodeIds.constraints = cst.ids;
+        nodeIds.constraint = cst.node.id;
         columns.push(constraintsColumn);
 
     const primaryKeyColumn = createColumn({name:'PRIMARY', color:'4E4F51'});

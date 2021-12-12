@@ -24,15 +24,18 @@ async function generatePopulatedTable(){
 generatePopulatedTable();
 
 const orchestrateModel = {
+  REMOVE_COL: 'REMOVE_COL',
+  ADD_COL: 'ADD_COL',
   CREATE_TABLE: 'CREATE_TABLE',
   REMOVE_TABLE: 'REMOVE_TABLE',
-  CREATE_COLUMN: 'CREATE_COLUMN',
-  REMOVE_COLUMN: 'REMOVE_COLUMN',
   MODIFY_TITLE: 'MODIFY_TITLE',
   MODIFY_ID: 'MODIFY_ID',
   MODIFY_DATATYPE: 'MODIFY_DATATYPE',
   MODIFY_CONSTRAINTS: 'MODIFY_CONSTRAINTS',
-  MODIFY_KEYS: 'MODIFY_KEYS'
+  MODIFY_KEYS: 'MODIFY_KEYS',
+  UPDATE_FIGMA_ID: 'UPDATE_FIGMA_ID',
+  UPDATE_FIGMA_IDS_NEW_TABLE: 'UPDATE_FIGMA_IDS_NEW_TABLE',
+  UPDATE_FIGMA_IDS_NEW_COLUMN: 'UPDATE_FIGMA_IDS_NEW_COLUMN'
 }
 
 //Activates when triggered by Plugin UI
@@ -68,14 +71,14 @@ figma.ui.onmessage = (message) => {
         returnMessage = deleteTable(uuid, figmaId);
         figma.ui.postMessage(returnMessage);
         break;
-    case orchestrateModel.CREATE_COLUMN:
+    case orchestrateModel.ADD_COL:
         returnMessage = createDefaultColumn(uuid);
         const table = figma.getNodeById(figmaId) as FrameNode;
         table.appendChild(returnMessage.node);
         delete returnMessage.node;
         figma.ui.postMessage(returnMessage)
         break;
-    case orchestrateModel.REMOVE_COLUMN:
+    case orchestrateModel.REMOVE_COL:
       returnMessage = deleteColumn(uuid, figmaId);
       figma.ui.postMessage(returnMessage);
       break;
