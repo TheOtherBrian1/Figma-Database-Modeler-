@@ -11,10 +11,10 @@ import {removeCol, createCol} from '../../../redux/table-interface/actions';
 interface Props{
     tableIndex: number,
     colIndex: number,
-    tableUUID: string
+    uuid: string
 }
 
-export default function DropDown({tableIndex, colIndex, tableUUID}:Props){
+export default function DropDown({tableIndex, colIndex, uuid}:Props){
     const dispatch = useAppDispatch();
     const cols = useAppSelector(state=>state.tableReducer[tableIndex].cols);
     const length = cols.length;
@@ -63,14 +63,14 @@ export default function DropDown({tableIndex, colIndex, tableUUID}:Props){
                     length !== 1 && <DeleteForeverIcon
                         sx={{color: 'red'}}
                         onClick={e=>{
-                            dispatch(removeCol(tableIndex, colIndex, tableUUID, figmaId));
+                            dispatch(removeCol(tableIndex, colIndex, uuid, figmaId));
                             handleClose();
                         }}
                     />
                 }
                 <AddBoxIcon
                     sx={{color: 'green'}}
-                    onClick={e=>dispatch(createCol(tableIndex, colIndex, tableUUID))} 
+                    onClick={e=>dispatch(createCol(tableIndex, colIndex, uuid))} 
                 />
             </Popover>
         </ >

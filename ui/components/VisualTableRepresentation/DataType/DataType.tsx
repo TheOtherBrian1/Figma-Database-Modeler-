@@ -14,10 +14,10 @@ const CustomPopper = (props)=><Popper {...props} style={{width:300}}></Popper>
 interface Props{
     tableIndex: number,
     colIndex: number,
-    tableUUID: string
+    uuid: string
 }
 
-export default function DataType({tableIndex, colIndex, tableUUID}:Props) {
+export default function DataType({tableIndex, colIndex, uuid}:Props) {
     const dispatch = useAppDispatch();
     const {controllerReducer, tableReducer} = useAppSelector(state=>state);
     const selectedDatabase:string = controllerReducer ? controllerReducer.selectedDatabase : 'postgresql';
@@ -26,7 +26,7 @@ export default function DataType({tableIndex, colIndex, tableUUID}:Props) {
     <Autocomplete
       options={databases[selectedDatabase]}
       value = {dataType[0]}
-      onChange={(e,value:string)=>dispatch(modifyDatatype(tableIndex, colIndex, value, tableUUID, dataType[1]))}
+      onChange={(e,value:string)=>dispatch(modifyDatatype(tableIndex, colIndex, value, uuid, dataType[1]))}
       groupBy={(option) => option[0]}
       getOptionLabel={(option) => option[1]}
       fullWidth={true}

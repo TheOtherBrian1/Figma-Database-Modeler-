@@ -8,10 +8,10 @@ import {modifyId} from '../../../redux/table-interface/actions'
 interface Props{
   tableIndex: number,
   colIndex: number,
-  tableUUID: string
+  uuid: string
 }
 
-export default function Id ({tableIndex, colIndex, tableUUID}:Props){
+export default function Id ({tableIndex, colIndex, uuid}:Props){
   const dispatch = useAppDispatch();
   const id = useAppSelector(state=>state.tableReducer[tableIndex].cols[colIndex].id)
 
@@ -36,7 +36,7 @@ export default function Id ({tableIndex, colIndex, tableUUID}:Props){
       placeholder='id'
       value = {id[0]}
       size="small"
-      onChange={e=>dispatch(modifyId(tableIndex, colIndex, e.target.value, tableUUID, id[1]))}
+      onChange={e=>dispatch(modifyId(tableIndex, colIndex, e.target.value, uuid, id[1]))}
     />
   );
 }

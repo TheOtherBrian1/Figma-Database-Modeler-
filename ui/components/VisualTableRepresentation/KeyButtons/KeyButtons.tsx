@@ -7,10 +7,10 @@ const colors = ['rgba(19,133,255, .2)', 'rgba(255, 161, 19, 0.2)']
 interface Props{
   tableIndex: number,
   colIndex: number,
-  tableUUID: string
+  uuid: string
 }
 
-export default function KeyButtons({tableIndex, colIndex, tableUUID}:Props) {
+export default function KeyButtons({tableIndex, colIndex, uuid}:Props) {
   const dispatch = useAppDispatch();
   const buttons = useAppSelector(state=>state.tableReducer[tableIndex].cols[colIndex].keys)
   return(
@@ -34,7 +34,7 @@ export default function KeyButtons({tableIndex, colIndex, tableUUID}:Props) {
                   justifyContent: 'center',
               }}
               onChange={(e)=>{
-                dispatch(modifyKeys(tableIndex, colIndex, keyIndex, tableUUID, buttons[1]));
+                dispatch(modifyKeys(tableIndex, colIndex, keyIndex, uuid, buttons[1]));
               }}
             >
               {name}

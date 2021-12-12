@@ -45,10 +45,10 @@ type DBSelect = Attribute[];
 interface Props{
   tableIndex: number,
   colIndex: number,
-  tableUUID: string
+  uuid: string
 }
 
-export default function Constraints({tableIndex, colIndex, tableUUID}:Props) {
+export default function Constraints({tableIndex, colIndex, uuid}:Props) {
   const dispatch = useAppDispatch();
   const constraints = useAppSelector(state=>state.tableReducer[tableIndex].cols[colIndex].constraints)
   return (
@@ -58,7 +58,7 @@ export default function Constraints({tableIndex, colIndex, tableUUID}:Props) {
       limitTags={1}
       size='small'
       disableCloseOnSelect
-      onChange = {(e,value:{attribute:string}[])=>dispatch(modifyConstraints(tableIndex, colIndex, value, tableUUID, constraints[1]))}
+      onChange = {(e,value:{attribute:string}[])=>dispatch(modifyConstraints(tableIndex, colIndex, value, uuid, constraints[1]))}
       getOptionLabel={(option:Attribute) => option.attribute}
       renderOption={(props, option:Attribute, { selected }) => (
         <li {...props}>

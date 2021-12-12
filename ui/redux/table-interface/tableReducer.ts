@@ -11,11 +11,12 @@ const tableReducer = (state:TableList = defaultTables, action) => {
             switch(action.type){
                 case orchestrateModel.UPDATE_FIGMA_IDS_NEW_TABLE:
                     tableIndex = state.findIndex(table=>table.uuid === load.uuid);
-                    draft[tableIndex].figmaId = load.figmaId.table;
-                    draft[tableIndex].cols[0].id[1] = load.figmaId.id;
-                    draft[tableIndex].cols[0].dataType[1] = load.figmaId.dataType;
-                    draft[tableIndex].cols[0].constraints[1] = load.figmaId.constraints;
-                    draft[tableIndex].cols[0].keys[1] = load.figmaId.fk
+                    console.log(load, 'load', tableIndex, 'tableIndex', state, 'state');
+                    draft[tableIndex].figmaId = load.figmaIds.table;
+                    draft[tableIndex].cols[0].id[1] = load.figmaIds.id;
+                    draft[tableIndex].cols[0].dataType[1] = load.figmaIds.dataType;
+                    draft[tableIndex].cols[0].constraints[1] = load.figmaIds.constraints;
+                    draft[tableIndex].cols[0].keys[1] = load.figmaIds.fk
                     break;
                 case orchestrateModel.UPDATE_FIGMA_IDS_NEW_COLUMN:
                     //Requires some index to identify 

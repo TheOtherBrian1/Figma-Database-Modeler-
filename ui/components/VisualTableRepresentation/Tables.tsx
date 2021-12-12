@@ -112,19 +112,19 @@ const Table = ()=>{
                             table.cols.map((block:Col, colIndex)=>
                                 <div className = "column-block" key = {table.title[0] + tableIndex + colIndex}>
                                         <div className = "id-block">
-                                            <Id tableIndex = {tableIndex} colIndex = {colIndex} tableUUID = {table.uuid}/>
+                                            <Id tableIndex = {tableIndex} colIndex = {colIndex} uuid = {table.uuid}/>
                                         </div>
                                         <div className = "data-type-block">
-                                            <DataType tableIndex = {tableIndex} colIndex = {colIndex} tableUUID = {table.uuid}/>
+                                            <DataType tableIndex = {tableIndex} colIndex = {colIndex} uuid = {table.uuid}/>
                                         </div>
                                         <div className = "constraints-block">
-                                            <Constraints tableIndex = {tableIndex} colIndex = {colIndex} tableUUID = {table.uuid}/>
+                                            <Constraints tableIndex = {tableIndex} colIndex = {colIndex} uuid = {table.uuid}/>
                                         </div>
                                         <div className ="keybuttons-block">
-                                            <KeyButtons tableIndex = {tableIndex} colIndex = {colIndex} tableUUID = {table.uuid}/>
+                                            <KeyButtons tableIndex = {tableIndex} colIndex = {colIndex} uuid = {table.uuid}/>
                                         </div>
                                         <div className = "drop-down-block">
-                                            <DropDown  tableIndex = {tableIndex} colIndex = {colIndex} tableUUID = {table.uuid}/>
+                                            <DropDown  tableIndex = {tableIndex} colIndex = {colIndex} uuid = {table.uuid}/>
                                         </div>
                                 </div>
                             )

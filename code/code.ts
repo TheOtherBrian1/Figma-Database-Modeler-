@@ -59,6 +59,7 @@ interface ReturnMessage{
 }
 
 figma.ui.onmessage = (message) => {
+  console.log(message, 'the message');
   const {uuid, figmaId, title, id, newConstraints, dataType} = message.payload;
   let returnMessage:ReturnMessage;
   switch(message.type){
