@@ -34,10 +34,9 @@ export default function Id ({tableIndex, colIndex, tableUUID}:Props){
       }}
       label="ID"
       placeholder='id'
-      defaultValue="id"
-      value = {id}
+      value = {id[0]}
       size="small"
-      onChange={e=>dispatch(modifyId(tableIndex, colIndex, e.target.value, tableUUID))}
+      onChange={e=>dispatch(modifyId(tableIndex, colIndex, e.target.value, tableUUID, id[1]))}
     />
   );
 }

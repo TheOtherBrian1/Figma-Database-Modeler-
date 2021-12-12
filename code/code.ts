@@ -1,6 +1,12 @@
 import callFont from './util/font';
 import createDefaultTable from './updateUIFunctions/createDefaultTable';
+import createDefaultColumn from './updateUIFunctions/createDefaultColumn';
 import deleteTable from './updateUIFunctions/deleteTable';
+import modifyDataType from './updateUIFunctions/modifyDataType';
+import modifyTitle from './updateUIFunctions/modifyTitle';
+import modifyId from './updateUIFunctions/modifyId';
+import modifyConstraints from './updateUIFunctions/modifyConstraints';
+import deleteColumn from './updateUIFunctions/deleteColumn';
 
 figma.showUI(__html__);
 
@@ -20,6 +26,8 @@ generatePopulatedTable();
 const orchestrateModel = {
   CREATE_TABLE: 'CREATE_TABLE',
   REMOVE_TABLE: 'REMOVE_TABLE',
+  CREATE_COLUMN: 'CREATE_COLUMN',
+  REMOVE_COLUMN: 'REMOVE_COLUMN',
   MODIFY_TITLE: 'MODIFY_TITLE',
   MODIFY_ID: 'MODIFY_ID',
   MODIFY_DATATYPE: 'MODIFY_DATATYPE',
@@ -27,31 +35,65 @@ const orchestrateModel = {
   MODIFY_KEYS: 'MODIFY_KEYS'
 }
 
+//Activates when triggered by Plugin UI
+//uuid is used to recognize relevant table in the plugin ui
+//figmaId is used to recongize the relevant frame in figma
+//all other parameters update the values inside figma
+interface ModUI{
+  uuid:string,
+  figmaId?:string,
+  title?:string,
+  id?:string,
+  newConstraints?:string[],
+  dataType?:string
+}
+interface ReturnMessage{
+  type: string, 
+  uuid: string, 
+  figmaId?:string, 
+  figmaIds?: string[] | {[prop: string]:string|string[]},
+  node?: FrameNode
+}
 
 figma.ui.onmessage = (message) => {
-  //figma.getNodeById(id: string);
-  //node.id
-  console.log(message, 'duck');
-  const load = message.payload;
+  const {uuid, figmaId, title, id, newConstraints, dataType} = message.payload;
+  let returnMessage:ReturnMessage;
   switch(message.type){
     case orchestrateModel.CREATE_TABLE:
-        createDefaultTable(load.tableUUID);
+        returnMessage = createDefaultTable(uuid);
+        delete returnMessage.node;
+        figma.ui.postMessage(returnMessage)
         break;
     case orchestrateModel.REMOVE_TABLE:
-      //
-        deleteTable(load.tableUUID, load.figmaId);
+        returnMessage = deleteTable(uuid, figmaId);
+        figma.ui.postMessage(returnMessage);
         break;
+    case orchestrateModel.CREATE_COLUMN:
+        returnMessage = createDefaultColumn(uuid);
+        const table = figma.getNodeById(figmaId) as FrameNode;
+        table.appendChild(returnMessage.node);
+        delete returnMessage.node;
+        figma.ui.postMessage(returnMessage)
+        break;
+    case orchestrateModel.REMOVE_COLUMN:
+      returnMessage = deleteColumn(uuid, figmaId);
+      figma.ui.postMessage(returnMessage);
+      break;
     case orchestrateModel.MODIFY_TITLE:
-        //modifyTitle();
+        returnMessage = modifyTitle(uuid, title, figmaId);
+        figma.ui.postMessage(returnMessage);
         break;
     case orchestrateModel.MODIFY_ID:
-        //modifyId();
+        returnMessage = modifyId(uuid, id, figmaId);
+        figma.ui.postMessage(returnMessage);
         break;
     case orchestrateModel.MODIFY_DATATYPE:
-        //modifyDatatype();
+        returnMessage = modifyDataType(uuid, dataType, figmaId);
+        figma.ui.postMessage(returnMessage);
         break;
     case orchestrateModel.MODIFY_CONSTRAINTS:
-        //modifyConstraints();
+        returnMessage = modifyConstraints(uuid, newConstraints, figmaId);
+        figma.ui.postMessage(returnMessage);
         break;
     case orchestrateModel.MODIFY_KEYS:
         //modifyKeys();

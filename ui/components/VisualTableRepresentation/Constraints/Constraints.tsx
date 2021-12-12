@@ -58,7 +58,7 @@ export default function Constraints({tableIndex, colIndex, tableUUID}:Props) {
       limitTags={1}
       size='small'
       disableCloseOnSelect
-      onChange = {(e,value:{attribute:string}[])=>dispatch(modifyConstraints(tableIndex, colIndex, value, tableUUID))}
+      onChange = {(e,value:{attribute:string}[])=>dispatch(modifyConstraints(tableIndex, colIndex, value, tableUUID, constraints[1]))}
       getOptionLabel={(option:Attribute) => option.attribute}
       renderOption={(props, option:Attribute, { selected }) => (
         <li {...props}>

@@ -12,12 +12,19 @@ export default function createConstraint(name:string, constraints:string[]) {
         resize: [10,40]
     });
 
+    const node = createConstraintTiles(constraints, widget);
+
+    return node;
+}
+
+export function createConstraintTiles(constraints:string[], widget:FrameNode):{node:FrameNode,ids:string[]}{
+    const ids = [];
     for(const constraint of constraints){
         const id = createFrameNode({layoutAlign: 'CENTER', paddingDirection: [0,8,0,8], cornerRadius:30, name: constraint, color: '626364'});
         const text = createTextNode({textCase:"UPPER", name: 'constraint', characters: constraint, fontSize: 14, style: 'Regular'});
         id.appendChild(text);
+        ids.push(id.id);
         widget.appendChild(id);
     }
-
-    return widget;
+    return {node: widget, ids}
 }

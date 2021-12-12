@@ -1,10 +1,4 @@
-import createTable from '../widgets/table';
-import createTitle from '../widgets/title';
-import createDefaultColumn from './createDefaultColumn';
-
-
-export default function createDefaultTable(uuid:string, figmaId: string){
-    console.log('createDefaultTableUUID', uuid)
+export default function deleteTable(uuid:string, figmaId: string){
     figma.getNodeById(figmaId).remove();
-    figma.ui.postMessage({uuid});
+    return {type: 'REMOVE_TABLE', uuid}
 }

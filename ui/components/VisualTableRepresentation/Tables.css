@@ -16,6 +16,12 @@
     --character-text-color: #F17400;
     --date-text-color: #00D0AB;
 }
+.create-new-table-row{
+    margin-top: 10px;
+    width: 100%;
+    padding: 2px;
+    background-color: rgba(255, 255, 255, 0.1);
+}
 .table{
     margin-top: 20px;
     width: 100%;

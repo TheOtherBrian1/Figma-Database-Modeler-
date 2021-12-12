@@ -16,9 +16,9 @@ export default function KeyButtons({tableIndex, colIndex, tableUUID}:Props) {
   return(
     <>
       {
-          buttons.map(([name, active], keyIndex)=>
+          buttons[0].map(([name, active], keyIndex)=>
             <ToggleButton
-              key = {name+tableIndex+colIndex+keyIndex}
+              key = {name[0]+tableIndex+colIndex+keyIndex}
               value={active}
               selected={active}
               sx={{
@@ -34,7 +34,7 @@ export default function KeyButtons({tableIndex, colIndex, tableUUID}:Props) {
                   justifyContent: 'center',
               }}
               onChange={(e)=>{
-                dispatch(modifyKeys(tableIndex, colIndex, keyIndex, tableUUID));
+                dispatch(modifyKeys(tableIndex, colIndex, keyIndex, tableUUID, buttons[1]));
               }}
             >
               {name}

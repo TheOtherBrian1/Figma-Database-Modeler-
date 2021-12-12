@@ -16,7 +16,9 @@ interface Props{
 
 export default function DropDown({tableIndex, colIndex, tableUUID}:Props){
     const dispatch = useAppDispatch();
-    const length = useAppSelector(state=>state.tableReducer[tableIndex].cols.length);
+    const cols = useAppSelector(state=>state.tableReducer[tableIndex].cols);
+    const length = cols.length;
+    const figmaId = cols[colIndex].figmaId;
     const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
     const open = Boolean(anchorEl);
     const id = open ? 'simple-popover' : undefined;
@@ -61,7 +63,7 @@ export default function DropDown({tableIndex, colIndex, tableUUID}:Props){
                     length !== 1 && <DeleteForeverIcon
                         sx={{color: 'red'}}
                         onClick={e=>{
-                            dispatch(removeCol(tableIndex, colIndex, tableUUID));
+                            dispatch(removeCol(tableIndex, colIndex, tableUUID, figmaId));
                             handleClose();
                         }}
                     />

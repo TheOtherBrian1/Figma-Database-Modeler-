@@ -19,21 +19,19 @@ interface Props{
 
 export default function DataType({tableIndex, colIndex, tableUUID}:Props) {
     const dispatch = useAppDispatch();
-    const selectedDatabase:string = useAppSelector(state=>{
-      if(state.controllerReducer)
-        return state.controllerReducer.selectedDatabase;
-      else
-        return 'postgresql';
-    });
+    const {controllerReducer, tableReducer} = useAppSelector(state=>state);
+    const selectedDatabase:string = controllerReducer ? controllerReducer.selectedDatabase : 'postgresql';
+    const dataType = tableReducer[tableIndex].cols[colIndex].dataType;
   return (
     <Autocomplete
       options={databases[selectedDatabase]}
-      defaultValue='integer'
-      onChange={(e,value:string)=>dispatch(modifyDatatype(tableIndex, colIndex, value, tableUUID))}
+      value = {dataType[0]}
+      onChange={(e,value:string)=>dispatch(modifyDatatype(tableIndex, colIndex, value, tableUUID, dataType[1]))}
       groupBy={(option) => option[0]}
       getOptionLabel={(option) => option[1]}
-      disableCloseOnSelect={true}
       fullWidth={true}
+      blurOnSelect={true}
+      isOptionEqualToValue={(a,b)=>a[1] === b}
       PopperComponent={CustomPopper}
       sx={{ 
         ".MuiInputBase-root":{
@@ -55,3 +53,5 @@ export default function DataType({tableIndex, colIndex, tableUUID}:Props) {
     />
   );
 }
+
+//{/*disableCloseOnSelect={true}*/}
