@@ -37,10 +37,7 @@ const Autocomplete = styled(MuiAutocomplete)({
       color: 'red'
     }
   });
-interface Attribute{
-    attribute: string;
-};
-type DBSelect = Attribute[];
+
 
 interface Props{
   tableIndex: number,
@@ -51,16 +48,18 @@ interface Props{
 export default function Constraints({tableIndex, colIndex, uuid}:Props) {
   const dispatch = useAppDispatch();
   const constraints = useAppSelector(state=>state.tableReducer[tableIndex].cols[colIndex].constraints)
+  console.log('constraints tsx', tableIndex, colIndex, uuid, constraints);
   return (
     <Autocomplete
       multiple
       options={top100Films}
       limitTags={1}
+      value = {constraints[0]}
       size='small'
       disableCloseOnSelect
-      onChange = {(e,value:{attribute:string}[])=>dispatch(modifyConstraints(tableIndex, colIndex, value, uuid, constraints[1]))}
-      getOptionLabel={(option:Attribute) => option.attribute}
-      renderOption={(props, option:Attribute, { selected }) => (
+      onChange = {(e,value:string[])=>dispatch(modifyConstraints(tableIndex, colIndex, value, uuid, constraints[1]))}
+      getOptionLabel={(option) => option as string}
+      renderOption={(props, option:string[], { selected }) => (
         <li {...props}>
           <Checkbox
             icon={icon}
@@ -68,7 +67,7 @@ export default function Constraints({tableIndex, colIndex, uuid}:Props) {
             style={{ marginRight: 8}}
             checked={selected}
           />
-          {option.attribute}
+          {option}
         </li>
       )}
       renderInput={(params) => (
@@ -80,9 +79,9 @@ export default function Constraints({tableIndex, colIndex, uuid}:Props) {
 
 // Top 100 films as rated by IMDb users. http://www.imdb.com/chart/top
 const top100Films = [
-  { attribute: 'NOT NULL' },
-  { attribute: 'INC'},
-  { attribute: 'UUID'}
+  'NOT NULL',
+  'INC',
+  'UUID'
 ];
 
 

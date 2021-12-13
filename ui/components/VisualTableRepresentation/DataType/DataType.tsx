@@ -5,7 +5,6 @@ import {useAppDispatch, useAppSelector} from '../../../hooks/reduxHooks';
 import {modifyDatatype} from '../../../redux/table-interface/actions';
 import { databases } from '../../../constants/data_types';
 import {Popper} from '@mui/material';
-import { styled } from '@mui/system';
 
 
 const CustomPopper = (props)=><Popper {...props} style={{width:300}}></Popper>

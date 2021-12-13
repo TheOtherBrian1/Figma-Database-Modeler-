@@ -14,7 +14,7 @@ interface Props{
 export default function Id ({tableIndex, colIndex, uuid}:Props){
   const dispatch = useAppDispatch();
   const id = useAppSelector(state=>state.tableReducer[tableIndex].cols[colIndex].id)
-
+  console.log(id, 'the ids');
   return (
     <TextField
       style = {{color: 'white'}}

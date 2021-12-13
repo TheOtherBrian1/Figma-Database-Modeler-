@@ -2,7 +2,7 @@ import {createTextNode, Text} from '../util/text'
 import { createFrameNode, Frame } from '../util/frame';
 
 type DataType = 'character' | 'numeric' | 'date' | 'binary' | 'boolean' | 'string' | 'geometric' | 'network address' | 'bit';
-const dataTypeColors = {
+export const dataTypeColors = {
     character: 'EFC900',
     numeric: 'F17400',
     date: '00D0AB',
@@ -18,5 +18,5 @@ export default function createDataType(name:string, dataType:DataType):{node:Fra
     const dataTypeNode = createFrameNode({mainAxisAlign: 'MIN',resize: [1,40],altAxisAlign: "CENTER", name: 'id_'+name, color: '222326', paddingDirection: [0,10,0,10]});
     const text = createTextNode({name, color: dataTypeColors[dataType], characters: name, fontSize: 14, textCase: 'UPPER', style: 'Regular'})
     dataTypeNode.appendChild(text);
-    return {node: dataTypeNode, id: dataTypeNode.id};
+    return {node: dataTypeNode, id: text.id};
 }

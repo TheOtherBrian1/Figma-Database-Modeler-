@@ -53,20 +53,22 @@ interface ModUI{
 interface ReturnMessage{
   type: string, 
   uuid: string, 
+  tableUuid?: string,
   figmaId?:string, 
   figmaIds?: string[] | {[prop: string]:string|string[]},
   node?: FrameNode
 }
 
 figma.ui.onmessage = (message) => {
-  console.log(message, 'the message');
-  const {uuid, figmaId, title, id, newConstraints, dataType} = message.payload;
+  console.log(message);
+  const {uuid, figmaId, title, id, constraint, dataType} = message.payload;
   let returnMessage:ReturnMessage;
   switch(message.type){
     case orchestrateModel.CREATE_TABLE:
         returnMessage = createDefaultTable(uuid);
         delete returnMessage.node;
         figma.ui.postMessage(returnMessage)
+        console.log(returnMessage)
         break;
     case orchestrateModel.REMOVE_TABLE:
         returnMessage = deleteTable(uuid, figmaId);
@@ -75,6 +77,8 @@ figma.ui.onmessage = (message) => {
     case orchestrateModel.ADD_COL:
         returnMessage = createDefaultColumn(uuid);
         const table = figma.getNodeById(figmaId) as FrameNode;
+        returnMessage.tableUuid = table.getPluginData('uuid');
+        console.log('return Message in Code', returnMessage);
         table.appendChild(returnMessage.node);
         delete returnMessage.node;
         figma.ui.postMessage(returnMessage)
@@ -88,6 +92,7 @@ figma.ui.onmessage = (message) => {
         figma.ui.postMessage(returnMessage);
         break;
     case orchestrateModel.MODIFY_ID:
+        console.log(uuid, id, figmaId, 'modifyId in code');
         returnMessage = modifyId(uuid, id, figmaId);
         figma.ui.postMessage(returnMessage);
         break;
@@ -96,7 +101,9 @@ figma.ui.onmessage = (message) => {
         figma.ui.postMessage(returnMessage);
         break;
     case orchestrateModel.MODIFY_CONSTRAINTS:
-        returnMessage = modifyConstraints(uuid, newConstraints, figmaId);
+        console.log('moidfyConstraints', uuid, constraint, figmaId);
+        returnMessage = modifyConstraints(uuid, constraint, figmaId);
+        console.log('returnMessage MODIFY_CONSTRAINTS', returnMessage);
         figma.ui.postMessage(returnMessage);
         break;
     case orchestrateModel.MODIFY_KEYS:

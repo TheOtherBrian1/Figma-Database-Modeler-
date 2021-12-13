@@ -8,6 +8,7 @@ import {createFrameNode} from '../util/frame';
 export default function createDefaultColumns(uuid:string){
     const columns = [];
     const nodeIds = {
+        column: '',
         fk:null,
         id:'',
         dataType:'',
@@ -35,7 +36,7 @@ export default function createDefaultColumns(uuid:string){
     const constraintsColumn = createColumn({name:'CONSTRAINTS', color:'4E4F51'});
         const cst = createConstraints('constraint1', ['NOT NULL']);
         constraintsColumn.appendChild(cst.node);
-        nodeIds.constraint = cst.node.id;
+        nodeIds.constraint = cst.id;
         columns.push(constraintsColumn);
 
     const primaryKeyColumn = createColumn({name:'PRIMARY', color:'4E4F51'});
@@ -45,6 +46,7 @@ export default function createDefaultColumns(uuid:string){
 
     const grid = createFrameNode({mainAxis: 'HORIZONTAL', name: 'tableData'});
     columns.forEach(column => grid.appendChild(column));
+    nodeIds.column = grid.id;
     
-    return {type: 'UPDATE_FIGMA_IDS_NEW_COLUMN', node: grid, figmaIds: nodeIds, uuid};
+    return {type: 'UPDATE_FIGMA_IDS_NEW_COLUMN', tableUuid: null, node: grid, figmaIds: nodeIds, uuid};
 }

@@ -33,7 +33,7 @@ export const tableTemplate = (uuid:string):Table=>({
 
 export const columnTemplate = (uuid:string):Col=>({
     figmaId: null,
-    uuid,
+    uuid: uuid,
     id: ['col_title', null],
     dataType: ['int', null],
     constraints: [['NOT NULL'], null],

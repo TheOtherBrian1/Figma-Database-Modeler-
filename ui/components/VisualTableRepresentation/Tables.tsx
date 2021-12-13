@@ -17,7 +17,6 @@ import Button from '@mui/material/Button';
 
 const Table = ()=>{
     const tableList = useAppSelector(state=>state.tableReducer);
-    console.log(tableList, 'table.tsx recreated');
     const dispatch = useAppDispatch();
     useEffect(() => {
         onmessage = (event) => {
@@ -57,7 +56,7 @@ const Table = ()=>{
                             };
                             uuid: string;
                     */
-                    dispatch(newColumnUpdateFigmaIds(message.uuid, message.figmaIds))
+                    dispatch(newColumnUpdateFigmaIds(message.uuid, message.tableUuid, message.figmaIds))
                     break;
                 case 'MODIFY_TITLE':
                     //requires no updating

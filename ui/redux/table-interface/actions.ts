@@ -9,9 +9,9 @@ export const createTable = ()=>({
 })
 
 //payload = {uuid:string, figmaIds: {}}
-export const newColumnUpdateFigmaIds = (uuid:string, figmaIds)=>({
+export const newColumnUpdateFigmaIds = (uuid:string, tableUuid:string, figmaIds)=>({
     type: 'UPDATE_FIGMA_IDS_NEW_COLUMN', 
-    payload:{uuid, figmaIds}
+    payload:{uuid, tableUuid, figmaIds}
 });
 
 //payload = {uuid:string, figmaIds: {}}
@@ -20,18 +20,10 @@ export const newTableUpdateFigmaIds=(uuid:string, figmaIds)=>({
     payload: {uuid, figmaIds}
 })
 
-/*
-//payload = {uuid: string, figmaId: string}
-export const updateFigmaId = (uuid:string, figmaId:FigmaId)=>({
-    type: orchestrateModel.UPDATE_FIGMA_ID,
-    payload:{uuid, figmaId}
-});
-*/
-
 //payload = {table_index:number, col_index:number}
-export const createCol = (table_index:number, col_index:number,uuid:string)=>({
+export const createCol = (table_index:number, col_index:number,uuid:string, figmaId:string)=>({
     type: orchestrateModel.ADD_COL,
-    payload:{table_index, col_index, uuid}
+    payload:{table_index, col_index, uuid, figmaId}
 })
 
 //payload = {table_index:number}
@@ -43,37 +35,37 @@ export const removeTable = (table_index:number, uuid:string, figmaId:FigmaId)=>(
 //payload = {table_index:number, title:string}
 export const modifyTitle = (table_index:number, title:string, uuid:string, figmaId:FigmaId)=>({
     type: orchestrateModel.MODIFY_TITLE,
-    payload:{table_index, title, uuid}
+    payload:{table_index, title, uuid, figmaId}
 })
 
 //payload = {table_index, col_index, id}
 export const modifyId = (table_index:number, col_index:number, id:string, uuid:string, figmaId:FigmaId)=>({
     type: orchestrateModel.MODIFY_ID,
-    payload:{table_index, col_index, id, uuid}
+    payload:{table_index, col_index, id, uuid, figmaId}
 })
 
 //payload = {table_index, col_index, dataType}
 export const modifyDatatype = (table_index:number, col_index:number, dataType:string, uuid:string, figmaId:FigmaId)=>({
     type: orchestrateModel.MODIFY_DATATYPE,
-    payload:{table_index, col_index, dataType, uuid}
+    payload:{table_index, col_index, dataType, uuid, figmaId}
 })
 
 //payload = {table_index, col_index, dataType}
 export const removeCol = (table_index:number, col_index:number, uuid:string, figmaId:FigmaId)=>({
     type: orchestrateModel.REMOVE_COL,
-    payload:{table_index, col_index, uuid}
+    payload:{table_index, col_index, uuid, figmaId}
 })
 
 //payload = {table_index, col_index, newConstraints}
-export const modifyConstraints = (table_index:number, col_index:number, constraint:{attribute:string}[], uuid:string, fimgaId:FigmaId)=>({
+export const modifyConstraints = (table_index:number, col_index:number, constraint:string[], uuid:string, figmaId:FigmaId)=>({
     type: orchestrateModel.MODIFY_CONSTRAINTS,
-    payload:{table_index, col_index, constraint, uuid}
+    payload:{table_index, col_index, constraint, uuid, figmaId}
 })
 
 //payload = {table_index, col_index, keyIndex}
 export const modifyKeys = (table_index:number, col_index:number, keyIndex:number,uuid:string, figmaId:FigmaId)=>({
     type: orchestrateModel.MODIFY_KEYS,
-    payload:{table_index, col_index, keyIndex, uuid}
+    payload:{table_index, col_index, keyIndex, uuid, figmaId}
 })
 
 export const actions = {

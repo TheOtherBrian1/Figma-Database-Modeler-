@@ -7,6 +7,7 @@ import AddBoxIcon from '@mui/icons-material/AddBox';
 import Button from '@mui/material/Button';
 import {useAppDispatch, useAppSelector} from '../../../hooks/reduxHooks';
 import {removeCol, createCol} from '../../../redux/table-interface/actions';
+import { v4 as uuidv4 } from 'uuid';
 
 interface Props{
     tableIndex: number,
@@ -16,7 +17,8 @@ interface Props{
 
 export default function DropDown({tableIndex, colIndex, uuid}:Props){
     const dispatch = useAppDispatch();
-    const cols = useAppSelector(state=>state.tableReducer[tableIndex].cols);
+    const table = useAppSelector(state=>state.tableReducer[tableIndex]);
+    const cols = table.cols;
     const length = cols.length;
     const figmaId = cols[colIndex].figmaId;
     const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
@@ -70,7 +72,7 @@ export default function DropDown({tableIndex, colIndex, uuid}:Props){
                 }
                 <AddBoxIcon
                     sx={{color: 'green'}}
-                    onClick={e=>dispatch(createCol(tableIndex, colIndex, uuid))} 
+                    onClick={()=>dispatch(createCol(tableIndex, colIndex, uuidv4(), table.figmaId))} 
                 />
             </Popover>
         </ >

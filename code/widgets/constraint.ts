@@ -17,14 +17,12 @@ export default function createConstraint(name:string, constraints:string[]) {
     return node;
 }
 
-export function createConstraintTiles(constraints:string[], widget:FrameNode):{node:FrameNode,ids:string[]}{
-    const ids = [];
+export function createConstraintTiles(constraints:string[], widget:FrameNode):{node:FrameNode,id:string}{
     for(const constraint of constraints){
         const id = createFrameNode({layoutAlign: 'CENTER', paddingDirection: [0,8,0,8], cornerRadius:30, name: constraint, color: '626364'});
         const text = createTextNode({textCase:"UPPER", name: 'constraint', characters: constraint, fontSize: 14, style: 'Regular'});
         id.appendChild(text);
-        ids.push(id.id);
         widget.appendChild(id);
     }
-    return {node: widget, ids}
+    return {node: widget, id: widget.id};
 }
