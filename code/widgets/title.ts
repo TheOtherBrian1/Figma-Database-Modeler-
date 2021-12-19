@@ -20,7 +20,8 @@ export default function createTitle(tableName:string){
         alignVertical: 'CENTER',
         name: tableName
     });
+    const figmaId = title.id;
   
     container.appendChild(title);
-    return container;
+    return {title:container, figmaId};
 }

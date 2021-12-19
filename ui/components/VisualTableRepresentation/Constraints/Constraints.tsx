@@ -48,7 +48,6 @@ interface Props{
 export default function Constraints({tableIndex, colIndex, uuid}:Props) {
   const dispatch = useAppDispatch();
   const constraints = useAppSelector(state=>state.tableReducer[tableIndex].cols[colIndex].constraints)
-  console.log('constraints tsx', tableIndex, colIndex, uuid, constraints);
   return (
     <Autocomplete
       multiple

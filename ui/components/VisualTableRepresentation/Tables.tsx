@@ -2,6 +2,7 @@ import * as React from 'react';
 import { useAppSelector, useAppDispatch } from '../../hooks/reduxHooks';
 import {useEffect} from 'react';
 import {Table, Col} from '../../redux/table-interface/default-state'
+import Title from './Title/Title';
 import {removeTable, createTable, newColumnUpdateFigmaIds, newTableUpdateFigmaIds} from '../../redux/table-interface/actions';
 import KeyButtons from './KeyButtons/KeyButtons';
 import Constraints from './Constraints/Constraints';
@@ -13,7 +14,7 @@ import "./Tables.css";
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import AddBoxIcon from '@mui/icons-material/AddBox';
 import Button from '@mui/material/Button';
-
+import Keys from './Keys/Keys';
 
 const Table = ()=>{
     const tableList = useAppSelector(state=>state.tableReducer);
@@ -94,7 +95,7 @@ const Table = ()=>{
                     tableList && tableList.map((table:Table, tableIndex)=>
                     <div className = "table" key = {table.title[0] + tableIndex}>
                         <div className = "table-title-container">
-                            <h2 className = "table-title">{table.title[0]}</h2>
+                            <Title uuid  = {table.uuid} figmaId = {table.title[1]} tableIndex = {tableIndex} />
                             <div>
                                 <Button
                                     onClick={()=>dispatch(removeTable(tableIndex, table.uuid, table.figmaId))}
@@ -120,7 +121,7 @@ const Table = ()=>{
                                             <Constraints tableIndex = {tableIndex} colIndex = {colIndex} uuid = {table.uuid}/>
                                         </div>
                                         <div className ="keybuttons-block">
-                                            <KeyButtons tableIndex = {tableIndex} colIndex = {colIndex} uuid = {table.uuid}/>
+                                            <Keys tableIndex = {tableIndex} colIndex = {colIndex} uuid = {table.uuid}/>
                                         </div>
                                         <div className = "drop-down-block">
                                             <DropDown  tableIndex = {tableIndex} colIndex = {colIndex} uuid = {table.uuid}/>

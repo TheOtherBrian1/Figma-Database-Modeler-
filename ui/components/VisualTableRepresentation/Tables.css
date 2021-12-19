@@ -37,14 +37,7 @@
     padding: 0 var(--standard-padding);
     background-color: var(--title-background-color);
 }
-.table-title{
-    padding: 0;
-    margin: 0;
-    color: var(--standard-font-color);
-    font-family: var(--title-font);
-    font-weight: 600;
-    font-size: var(--title-font-size);
-}
+
 .column-block{
     height: 60px;
     display: flex;
