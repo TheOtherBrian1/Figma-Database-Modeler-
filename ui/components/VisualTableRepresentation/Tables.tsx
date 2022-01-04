@@ -4,7 +4,7 @@ import {useEffect} from 'react';
 import {Table, Col} from '../../redux/table-interface/default-state'
 import Title from './Title/Title';
 import {removeTable, createTable, newColumnUpdateFigmaIds, newTableUpdateFigmaIds} from '../../redux/table-interface/actions';
-import KeyButtons from './KeyButtons/KeyButtons';
+// import KeyButtons from './KeyButtons/KeyButtons';
 import Constraints from './Constraints/Constraints';
 import DataType from './DataType/DataType';
 import Header from './Header/Header';
@@ -14,8 +14,8 @@ import "./Tables.css";
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import AddBoxIcon from '@mui/icons-material/AddBox';
 import Button from '@mui/material/Button';
-import Keys from './Keys/Keys';
-
+// import Keys from './Keys/Keys';
+import FK from './Keys/FK';
 const Table = ()=>{
     const tableList = useAppSelector(state=>state.tableReducer);
     const dispatch = useAppDispatch();
@@ -121,7 +121,7 @@ const Table = ()=>{
                                             <Constraints tableIndex = {tableIndex} colIndex = {colIndex} uuid = {table.uuid}/>
                                         </div>
                                         <div className ="keybuttons-block">
-                                            <Keys tableIndex = {tableIndex} colIndex = {colIndex} uuid = {table.uuid}/>
+                                            <FK tableIndex = {tableIndex} colIndex = {colIndex} uuid = {table.uuid}/>
                                         </div>
                                         <div className = "drop-down-block">
                                             <DropDown  tableIndex = {tableIndex} colIndex = {colIndex} uuid = {table.uuid}/>

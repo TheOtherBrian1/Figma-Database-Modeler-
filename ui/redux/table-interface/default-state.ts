@@ -1,14 +1,15 @@
 import { v4 as uuidv4 } from 'uuid';
 //Custom data-types---------------------------------------
 export type FigmaId = string|null;
-
+type tableName = string;
 export interface Col{
     figmaId: FigmaId,
     uuid: string,
     id: [string, FigmaId],
     dataType: [string, FigmaId],
     constraints: [string[], FigmaId],
-    keys: [[string, boolean][], FigmaId]
+    pk: [tableName, FigmaId],
+    fk: [tableName, FigmaId]
 }
 export interface Table{
     title: [string, FigmaId],
@@ -37,5 +38,6 @@ export const columnTemplate = (uuid:string):Col=>({
     id: ['col_title', null],
     dataType: ['int', null],
     constraints: [['NOT NULL'], null],
-    keys: [[['PK', false], ['AK', false]], null]
+    pk: ['N/A', null],
+    fk: ['N/A', null]
 });

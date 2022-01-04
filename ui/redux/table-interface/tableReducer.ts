@@ -16,7 +16,8 @@ const tableReducer = (state:TableList = defaultTables, action) => {
                     draft[tableIndex].cols[0].id[1] = load.figmaIds.id;
                     draft[tableIndex].cols[0].dataType[1] = load.figmaIds.dataType;
                     draft[tableIndex].cols[0].constraints[1] = load.figmaIds.constraint;
-                    draft[tableIndex].cols[0].keys[1] = load.figmaIds.fk
+                    draft[tableIndex].cols[0].fk[1] = load.figmaIds.fk;
+                    draft[tableIndex].cols[0].pk[1] = load.figmaIds.pk;
                     break;
                 case orchestrateModel.UPDATE_FIGMA_IDS_NEW_COLUMN:
                     tableIndex = state.findIndex(table=>table.uuid === load.tableUuid);
@@ -24,7 +25,8 @@ const tableReducer = (state:TableList = defaultTables, action) => {
                     draft[tableIndex].cols[columnIndex].id[1] = load.figmaIds.id;
                     draft[tableIndex].cols[columnIndex].dataType[1] = load.figmaIds.dataType;
                     draft[tableIndex].cols[columnIndex].constraints[1] = load.figmaIds.constraints;
-                    draft[tableIndex].cols[columnIndex].keys[1] = load.figmaIds.fk
+                    draft[tableIndex].cols[columnIndex].fk[1] = load.figmaIds.fk
+                    draft[tableIndex].cols[columnIndex].pk[1] = load.figmaIds.pk
                     break;
                 case orchestrateModel.CREATE_TABLE:
                     draft.push(tableTemplate(load.uuid));
@@ -51,9 +53,11 @@ const tableReducer = (state:TableList = defaultTables, action) => {
                 case orchestrateModel.MODIFY_CONSTRAINTS:
                     draft[load.table_index].cols[load.col_index].constraints[0] = load.constraint;
                     break;
-                case orchestrateModel.MODIFY_KEYS:
-                    const toggle = state[load.table_index].cols[load.col_index].keys[0][load.keyIndex][1]
-                    draft[load.table_index].cols[load.col_index].keys[0][load.keyIndex][1] = !toggle;
+                case orchestrateModel.MODIFY_PK:
+                    draft[load.table_index].cols[load.col_index].pk[0] = load.pk;
+                    break;
+                case orchestrateModel.MODIFY_FK:
+                    draft[load.table_index].cols[load.col_index].fk[0] = load.fk;
                     break;
                 default:
                     break;

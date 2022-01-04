@@ -62,10 +62,14 @@ export const modifyConstraints = (table_index:number, col_index:number, constrai
     payload:{table_index, col_index, constraint, uuid, figmaId}
 })
 
-//payload = {table_index, col_index, keyIndex}
-export const modifyKeys = (table_index:number, col_index:number, keyIndex:number,uuid:string, figmaId:FigmaId)=>({
-    type: orchestrateModel.MODIFY_KEYS,
-    payload:{table_index, col_index, keyIndex, uuid, figmaId}
+export const modifyPk = (table_index:number, col_index:number, pk: string, uuid:string, figmaId:FigmaId)=>({
+    type: orchestrateModel.MODIFY_PK,
+    payload:{table_index, col_index, pk, uuid, figmaId}
+})
+
+export const modifyFk = (table_index:number, col_index:number, fk: string, uuid:string, figmaId:FigmaId)=>({
+    type: orchestrateModel.MODIFY_FK,
+    payload:{table_index, col_index, fk, uuid, figmaId}
 })
 
 export const actions = {
@@ -75,7 +79,8 @@ export const actions = {
     modifyId,
     modifyDatatype,
     modifyConstraints,
-    modifyKeys,
     removeCol,
-    createCol
+    createCol,
+    modifyPk,
+    modifyFk
 }
