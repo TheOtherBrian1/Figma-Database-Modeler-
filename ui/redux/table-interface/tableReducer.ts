@@ -42,6 +42,7 @@ const tableReducer = (state:TableList = defaultTables, action) => {
                     draft[load.table_index].title[0] = load.title;
                     break;
                 case orchestrateModel.MODIFY_ID:
+                    console.log(load.id);
                     draft[load.table_index].cols[load.col_index].id[0] = load.id;
                     break;
                 case orchestrateModel.MODIFY_DATATYPE:

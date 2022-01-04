@@ -93,7 +93,7 @@ const Table = ()=>{
             <div className = "table-wrapper">
                 {
                     tableList && tableList.map((table:Table, tableIndex)=>
-                    <div className = "table" key = {table.title[0] + tableIndex}>
+                    <div className = "table" key = {table.uuid + tableIndex}>
                         <div className = "table-title-container">
                             <Title uuid  = {table.uuid} figmaId = {table.title[1]} tableIndex = {tableIndex} />
                             <div>
@@ -110,7 +110,7 @@ const Table = ()=>{
                         {/*   <Header /> */}
                         {
                             table.cols.map((block:Col, colIndex)=>
-                                <div className = "column-block" key = {table.title[0] + tableIndex + colIndex}>
+                                <div className = "column-block" key = {table.uuid + tableIndex + colIndex}>
                                         <div className = "id-block">
                                             <Id tableIndex = {tableIndex} colIndex = {colIndex} uuid = {table.uuid}/>
                                         </div>
