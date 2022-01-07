@@ -18,7 +18,8 @@ export default function createDefaultColumns(uuid:string){
     
     const foreignKeyColumn = createColumn({name:'FOREIGN', color:'4E4F51'});
         const fk = createKey({type: 'FOREIGN', keyLinkSettings:{name:'FK', characters: 'N/A'}})
-        foreignKeyColumn.appendChild(fk);
+        foreignKeyColumn.appendChild(fk.key);
+        nodeIds.fk = fk.textNode;
         columns.push(foreignKeyColumn);
 
     const idColumn = createColumn({name:'ID', color:'4E4F51'});
@@ -41,7 +42,8 @@ export default function createDefaultColumns(uuid:string){
 
     const primaryKeyColumn = createColumn({name:'PRIMARY', color:'4E4F51'});
         const pk = createKey({type: 'PRIMARY', keyLinkSettings:{name:'PK', characters: 'N/A'}})
-        primaryKeyColumn.appendChild(pk);
+        primaryKeyColumn.appendChild(pk.key);
+        nodeIds.pk = pk.textNode;
         columns.push(primaryKeyColumn);
 
     const grid = createFrameNode({mainAxis: 'HORIZONTAL', name: 'tableData'});

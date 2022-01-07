@@ -16,6 +16,7 @@ import AddBoxIcon from '@mui/icons-material/AddBox';
 import Button from '@mui/material/Button';
 // import Keys from './Keys/Keys';
 import FK from './Keys/FK';
+import PK from './Keys/PK';
 const Table = ()=>{
     const tableList = useAppSelector(state=>state.tableReducer);
     const dispatch = useAppDispatch();
@@ -65,6 +66,7 @@ const Table = ()=>{
                 case 'MODIFY_ID':
                     //requires no updating
                     break;
+                    
                 case 'MODIFY_DATATYPE':
                     //requires no updating
                     break;
@@ -122,6 +124,9 @@ const Table = ()=>{
                                         </div>
                                         <div className ="keybuttons-block">
                                             <FK tableIndex = {tableIndex} colIndex = {colIndex} uuid = {table.uuid}/>
+                                        </div>
+                                        <div className ="keybuttons-block">
+                                            <PK tableIndex = {tableIndex} colIndex = {colIndex} uuid = {table.uuid}/>
                                         </div>
                                         <div className = "drop-down-block">
                                             <DropDown  tableIndex = {tableIndex} colIndex = {colIndex} uuid = {table.uuid}/>

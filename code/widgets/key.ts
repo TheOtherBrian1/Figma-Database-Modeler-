@@ -67,5 +67,5 @@ export default function createKey({
     const keyLink = createTextNode(Object.assign(defaltKeyLinkSettings, textColor, keyLinkSettings))
     key.appendChild(keyTitle);
     key.appendChild(keyLink);
-    return key;
+    return {key, textNode: keyLink.id};
 }

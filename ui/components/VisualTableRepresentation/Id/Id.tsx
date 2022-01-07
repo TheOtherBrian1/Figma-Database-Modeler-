@@ -21,7 +21,8 @@ export default function Id ({tableIndex, colIndex, uuid}:Props){
       sx={{
         height: 30,
         "& .MuiInputBase-root":{
-          color: 'white'
+          color: 'white',
+          width: 100
         },
         '.Mui-focused':{
           color: 'white',

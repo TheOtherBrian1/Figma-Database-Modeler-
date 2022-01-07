@@ -3,7 +3,7 @@ import Box from '@mui/material/Box/';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import {useAppDispatch} from '../../../hooks/reduxHooks';
-import {selectDatabase} from '../../../redux/settings-menu/settings'
+import {selectDatabase} from '../../../redux/settings-menu/settingsReducer'
 import store from '../../../redux/store';
 
 

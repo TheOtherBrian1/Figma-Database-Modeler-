@@ -7,10 +7,13 @@ import modifyTitle from './updateUIFunctions/modifyTitle';
 import modifyId from './updateUIFunctions/modifyId';
 import modifyConstraints from './updateUIFunctions/modifyConstraints';
 import deleteColumn from './updateUIFunctions/deleteColumn';
+import modifyFk from './updateUIFunctions/modifyFk';
+import modifyPk from './updateUIFunctions/modifyPk';
+
 
 figma.showUI(__html__);
 
-figma.ui.resize(450, 600);
+figma.ui.resize(475, 600);
 
 async function generatePopulatedTable(){
   await callFont([
@@ -35,7 +38,9 @@ const orchestrateModel = {
   MODIFY_KEYS: 'MODIFY_KEYS',
   UPDATE_FIGMA_ID: 'UPDATE_FIGMA_ID',
   UPDATE_FIGMA_IDS_NEW_TABLE: 'UPDATE_FIGMA_IDS_NEW_TABLE',
-  UPDATE_FIGMA_IDS_NEW_COLUMN: 'UPDATE_FIGMA_IDS_NEW_COLUMN'
+  UPDATE_FIGMA_IDS_NEW_COLUMN: 'UPDATE_FIGMA_IDS_NEW_COLUMN',
+  MODIFY_FK: 'MODIFY_FK',
+  MODIFY_PK: 'MODIFY_PK'
 }
 
 //Activates when triggered by Plugin UI
@@ -60,8 +65,8 @@ interface ReturnMessage{
 }
 
 figma.ui.onmessage = (message) => {
-  console.log(message);
-  const {uuid, figmaId, title, id, constraint, dataType} = message.payload;
+  console.log('message', message);
+  const {uuid, figmaId, title, id, constraint, fk, pk, dataType} = message.payload;
   let returnMessage:ReturnMessage;
   switch(message.type){
     case orchestrateModel.CREATE_TABLE:
@@ -106,8 +111,15 @@ figma.ui.onmessage = (message) => {
         console.log('returnMessage MODIFY_CONSTRAINTS', returnMessage);
         figma.ui.postMessage(returnMessage);
         break;
-    case orchestrateModel.MODIFY_KEYS:
-        //modifyKeys();
+    case orchestrateModel.MODIFY_FK:
+        console.log("Modify! FK", uuid, 'uuid', fk, 'fk', figmaId, 'figmaId');
+        returnMessage = modifyFk(uuid, fk, figmaId);
+        figma.ui.postMessage(returnMessage);
+        break;
+      case orchestrateModel.MODIFY_PK:
+        console.log("Modify! FK", uuid, 'uuid', fk, 'fk', figmaId, 'figmaId');
+        returnMessage = modifyPk(uuid, pk, figmaId);
+        figma.ui.postMessage(returnMessage);
         break;
     default:
         break;

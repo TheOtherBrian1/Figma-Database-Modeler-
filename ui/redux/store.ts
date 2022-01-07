@@ -1,5 +1,5 @@
 import {combineReducers, createStore, applyMiddleware } from 'redux';
-import controllerReducer from './settings-menu/settings';
+import controllerReducer from './settings-menu/settingsReducer';
 import tableReducer from './table-interface/tableReducer';
 import sendFigmaMessage from './middleware';
 

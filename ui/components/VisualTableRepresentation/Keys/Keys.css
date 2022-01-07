@@ -3,8 +3,23 @@
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    background-color: #212B3B;
     font-family: 'IBM Plex Mono';
     font-size: 16px;
     font-weight: 600;
+}
+.fk-key-background{
+    background-color: #212B3B;
+}
+.pk-key-background{
+    background-color: #38393A;
+}
+
+.fk{
+    color: #1371FF;
+}
+.pk{
+    color: #FF7613
+}
+.waffle{
+    font-size: 200px;
 }

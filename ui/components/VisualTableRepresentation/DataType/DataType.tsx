@@ -37,7 +37,7 @@ export default function DataType({tableIndex, colIndex, uuid}:Props) {
           padding: 0,
           color: 'white',
           p: 0,
-          width: 200
+          width: 100
         },
         ".Mui-focused":{
           width: 300, 
