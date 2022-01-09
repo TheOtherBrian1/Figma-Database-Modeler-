@@ -1,4 +1,4 @@
-# Blog_template
+# Figma Database Modeler
 
 <p>
   Uses Figma to model Relational databases. Once the database is modeled, a user can click <em> View SQL </em> to retrieve the necessary SQL to construct their database.
