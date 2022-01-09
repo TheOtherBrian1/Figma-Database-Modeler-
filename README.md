@@ -4,7 +4,7 @@
   Uses Figma to model Relational databases. Once the database is modeled, a user can click <em> View SQL </em> to retrieve the necessary SQL to construct their database.
 </p>
 <br />
-<img src = "Readme-assets/demo.gif" />
+<img src = "ReadMe-assets/demo.gif" />
 
 <hr />
 <h3>Technologies used</h3>
