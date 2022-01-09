@@ -1,5 +1,4 @@
 const sendFigmaMessage = store => next => action => {
-    console.log('action called:', action.type, action.payload);
     //* is the url that connects the two workers
     parent.postMessage({ pluginMessage: action }, '*');
     let result = next(action)

@@ -13,7 +13,7 @@ import modifyPk from './updateUIFunctions/modifyPk';
 
 figma.showUI(__html__);
 
-figma.ui.resize(475, 600);
+figma.ui.resize(650, 600);
 
 async function generatePopulatedTable(){
   await callFont([
@@ -65,7 +65,6 @@ interface ReturnMessage{
 }
 
 figma.ui.onmessage = (message) => {
-  console.log('message', message);
   const {uuid, figmaId, title, id, constraint, fk, pk, dataType} = message.payload;
   let returnMessage:ReturnMessage;
   switch(message.type){
@@ -73,7 +72,6 @@ figma.ui.onmessage = (message) => {
         returnMessage = createDefaultTable(uuid);
         delete returnMessage.node;
         figma.ui.postMessage(returnMessage)
-        console.log(returnMessage)
         break;
     case orchestrateModel.REMOVE_TABLE:
         returnMessage = deleteTable(uuid, figmaId);
@@ -83,7 +81,6 @@ figma.ui.onmessage = (message) => {
         returnMessage = createDefaultColumn(uuid);
         const table = figma.getNodeById(figmaId) as FrameNode;
         returnMessage.tableUuid = table.getPluginData('uuid');
-        console.log('return Message in Code', returnMessage);
         table.appendChild(returnMessage.node);
         delete returnMessage.node;
         figma.ui.postMessage(returnMessage)
@@ -97,7 +94,6 @@ figma.ui.onmessage = (message) => {
         figma.ui.postMessage(returnMessage);
         break;
     case orchestrateModel.MODIFY_ID:
-        console.log(uuid, id, figmaId, 'modifyId in code');
         returnMessage = modifyId(uuid, id, figmaId);
         figma.ui.postMessage(returnMessage);
         break;
@@ -106,18 +102,14 @@ figma.ui.onmessage = (message) => {
         figma.ui.postMessage(returnMessage);
         break;
     case orchestrateModel.MODIFY_CONSTRAINTS:
-        console.log('moidfyConstraints', uuid, constraint, figmaId);
         returnMessage = modifyConstraints(uuid, constraint, figmaId);
-        console.log('returnMessage MODIFY_CONSTRAINTS', returnMessage);
         figma.ui.postMessage(returnMessage);
         break;
     case orchestrateModel.MODIFY_FK:
-        console.log("Modify! FK", uuid, 'uuid', fk, 'fk', figmaId, 'figmaId');
         returnMessage = modifyFk(uuid, fk, figmaId);
         figma.ui.postMessage(returnMessage);
         break;
       case orchestrateModel.MODIFY_PK:
-        console.log("Modify! FK", uuid, 'uuid', fk, 'fk', figmaId, 'figmaId');
         returnMessage = modifyPk(uuid, pk, figmaId);
         figma.ui.postMessage(returnMessage);
         break;

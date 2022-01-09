@@ -52,11 +52,9 @@ interface Option {
     fk: string
 };
 export default React.memo(function Keys({tableIndex, colIndex, uuid}:Props) {
-    console.log('truce')
     const dispatch = useAppDispatch();
     const tables = useAppSelector(state=>state.tableReducer)
     const fk = tables[tableIndex].cols[colIndex].fk;
-    console.log(fk, 'moose')
 
     //get table title for creating key connections between tables
     const options = []
@@ -83,14 +81,12 @@ export default React.memo(function Keys({tableIndex, colIndex, uuid}:Props) {
                 defaultValue = {fk[0]}
                 value = {fk[0]}
                 onChange = {(e,value:any)=>{
-                  console.log('value',value, 'value');
                   dispatch(modifyFk(tableIndex, colIndex, value.id, uuid, fk[1]))
                 }}
                 options={options.sort((a, b) => -b.title.localeCompare(a.title))}
                 groupBy={(option:Option) => option.title!}
                 getOptionLabel={(option:any) => {
 
-                  console.log('not option', option)
                   if(typeof option.id === 'string') return option.id
                   else if(typeof option === 'string') return option
 
@@ -108,7 +104,7 @@ export default React.memo(function Keys({tableIndex, colIndex, uuid}:Props) {
                       width: 200
                     },  
                   }}
-                renderInput={(params) => {console.log(params);return <TextField {...params} />}}
+                renderInput={(params) => {return <TextField {...params} />}}
             />
         </div>
     );

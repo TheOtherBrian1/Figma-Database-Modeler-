@@ -12,7 +12,6 @@ interface Props{
 }
 
 export default function Id ({tableIndex, colIndex, uuid}:Props){
-  console.log('key = ', tableIndex, colIndex, uuid)
   const dispatch = useAppDispatch();
   const id = useAppSelector(state=>state.tableReducer[tableIndex].cols[colIndex].id)
   return (

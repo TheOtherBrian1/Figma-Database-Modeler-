@@ -48,11 +48,9 @@ interface Option {
     pk: string
 };
 export default function Keys({tableIndex, colIndex, uuid}:Props) {
-    console.log('truce')
     const dispatch = useAppDispatch();
     const tables = useAppSelector(state=>state.tableReducer)
     const pk = tables[tableIndex].cols[colIndex].pk;
-    console.log(pk, 'pk the duck')
     //get table title for creating key connections between tables
     const options = []
     for (const table of tables){
@@ -83,7 +81,6 @@ export default function Keys({tableIndex, colIndex, uuid}:Props) {
                 options={options.sort((a, b) => -b.title.localeCompare(a.title))}
                 groupBy={(option:Option) => option.title!}
                 getOptionLabel={(option:any) =>{
-                  console.log('option', option);
                   if(typeof option.id === 'string') return option.id
                   else if(option === 'string') return option
                   return 'N/A'}
@@ -100,7 +97,7 @@ export default function Keys({tableIndex, colIndex, uuid}:Props) {
                       width: 200
                     },  
                   }}
-                renderInput={(params) => {console.log(params);return <TextField {...params} />}}
+                renderInput={(params) => {return <TextField {...params} />}}
             />
         </div>
     );
